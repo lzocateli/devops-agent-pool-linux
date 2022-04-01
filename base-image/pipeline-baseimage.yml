@@ -1,6 +1,6 @@
 parameters:
   - name: imageName
-    displayName: "Name the image to be created, example: lzocateli/azdo-agents"
+    displayName: "Name the image to be created, example: nuuvedevops/azdo-agents"
     type: string
     default: ""
   - name: imageVersion
