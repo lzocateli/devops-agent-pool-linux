@@ -1,0 +1,142 @@
+{
+    "count": 10,
+    "value": [
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2022-01-11T08:58:06.03Z",
+            "version": {
+                "major": 2,
+                "minor": 196,
+                "patch": 2
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.196.2/vsts-agent-linux-x64-2.196.2.tar.gz",
+            "hashValue": "af48486bbd04c937ffbfa48dcd69a9fc0bdcd8e2de6c87ae65b419a030e44890",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.196.2.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-12-06T14:29:21.057Z",
+            "version": {
+                "major": 2,
+                "minor": 195,
+                "patch": 2
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.195.2/vsts-agent-linux-x64-2.195.2.tar.gz",
+            "hashValue": "9351c09fbefc039f854cd7941fa875149358c01e781530edb65a6c30f20e834a",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.195.2.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-11-29T14:34:14.023Z",
+            "version": {
+                "major": 2,
+                "minor": 195,
+                "patch": 1
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.195.1/vsts-agent-linux-x64-2.195.1.tar.gz",
+            "hashValue": "ef06590c0f17bb835dc0b8bf51389684bfe6dd400564054fb65e8141b277d761",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.195.1.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-11-17T14:11:49.88Z",
+            "version": {
+                "major": 2,
+                "minor": 195,
+                "patch": 0
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.195.0/vsts-agent-linux-x64-2.195.0.tar.gz",
+            "hashValue": "e82c63239098bcde5eea4fa612f5e052433505af3b592d55ce0165d5d03918c0",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.195.0.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-10-26T14:47:18.373Z",
+            "version": {
+                "major": 2,
+                "minor": 194,
+                "patch": 0
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.194.0/vsts-agent-linux-x64-2.194.0.tar.gz",
+            "hashValue": "8a58babefe4724617789749567b0e41e2b880d1dd395e495f7c77a65cc584b7e",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.194.0.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-10-13T14:29:01.06Z",
+            "version": {
+                "major": 2,
+                "minor": 193,
+                "patch": 1
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.193.1/vsts-agent-linux-x64-2.193.1.tar.gz",
+            "hashValue": "3b1159e0d1f672d96c87b8e81b89e12f7e8b40e75c7f277eec7c4ca70ab43f95",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.193.1.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-09-30T14:47:10.62Z",
+            "version": {
+                "major": 2,
+                "minor": 193,
+                "patch": 0
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.193.0/vsts-agent-linux-x64-2.193.0.tar.gz",
+            "hashValue": "557b30f48162cbd97fa560e33a9e8cc1a63bc9ec0afe8f17db0e89b31cca9d95",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.193.0.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-09-13T14:21:48.28Z",
+            "version": {
+                "major": 2,
+                "minor": 192,
+                "patch": 0
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.192.0/vsts-agent-linux-x64-2.192.0.tar.gz",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.192.0.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-08-30T14:03:20.863Z",
+            "version": {
+                "major": 2,
+                "minor": 191,
+                "patch": 1
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.191.1/vsts-agent-linux-x64-2.191.1.tar.gz",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.191.1.tar.gz"
+        },
+        {
+            "type": "agent",
+            "platform": "linux-x64",
+            "createdOn": "2021-08-05T14:34:13.62Z",
+            "version": {
+                "major": 2,
+                "minor": 190,
+                "patch": 0
+            },
+            "downloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.190.0/vsts-agent-linux-x64-2.190.0.tar.gz",
+            "infoUrl": "https://go.microsoft.com/fwlink/?LinkId=798199",
+            "filename": "vsts-agent-linux-x64-2.190.0.tar.gz"
+        }
+    ]
+}

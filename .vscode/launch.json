@@ -1,0 +1,55 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PowerShell Launch Current File",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "cwd": "${file}"
+        },
+        {
+            "name": "PowerShell: build-docker-agent (win)",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "./build-docker-agent.ps1",
+            "cwd": "${workspaceFolder}/docker/",
+            "args": [
+                "-dockerId lzocateli -dockertoken xxxxxxxx"
+            ]
+        },
+        {
+            "name": "PowerShell: install-agent",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "./install-agent.ps1",
+            "cwd": "${workspaceFolder}/agent",
+            "args": [
+                "-pathAgent d:/Temp"
+            ]
+        },
+        {
+            "name": "PowerShell: ConfigureOrRun",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "./ConfigureOrRun.ps1",
+            "cwd": "${workspaceFolder}/agent",
+            "args": [
+                "-pathAgent d:/Temp"
+            ]
+        },
+        {
+            "name": "PowerShell: Build-docker-image",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "./build-docker-image.ps1",
+            "cwd": "${workspaceFolder}/docker/image-win",
+            "args": [
+                "-dockerId lzocateli -dockertoken xxxxxxxxxxxxx"
+            ]
+        }
+    ]
+}

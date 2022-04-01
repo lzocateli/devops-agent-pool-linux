@@ -1,0 +1,49 @@
+parameters:
+  - name: imageName
+    displayName: "Name the image to be created, example: lzocateli/azdo-agents"
+    type: string
+    default: ""
+  - name: imageVersion
+    displayName: "Tag version for the image, example: linux-x64-1.0.0"
+    type: string
+    default: ""
+  - name: DockerFilePath
+    displayName: "Dockerfile path, example: base-image/linux"
+    type: string
+    default: ""
+
+trigger: none
+
+stages:
+  - stage: "CreateImage"
+    displayName: "Create Conteiner Image"
+
+    jobs:
+      - job: "BuildImage"
+        displayName: "Build Image"
+
+        pool:
+          vmimage: ubuntu-latest
+
+        steps:
+          - checkout: self
+            displayName: "Git clone self reposytory"
+
+          - task: Docker@2
+            displayName: "Docker Build"
+            enabled: true
+            inputs:
+              containerRegistry: "SharedKernel-Container-DockerHub"
+              repository: "${{ parameters.imageName }}"
+              command: "build"
+              Dockerfile: "${{ parameters.DockerFilePath }}/Dockerfile"
+              tags: "${{ parameters.imageVersion }}"
+
+          - task: Docker@2
+            displayName: "Docker Push"
+            enabled: true
+            inputs:
+              containerRegistry: "SharedKernel-Container-DockerHub"
+              repository: "${{ parameters.imageName }}"
+              command: "push"
+              tags: "${{ parameters.imageVersion }}"
