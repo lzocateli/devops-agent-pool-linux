@@ -1,5 +1,4 @@
 #!/bin/pwsh
-#Esse script esta sendo executado dentro do container
 
 [CmdletBinding()] 
 param(
@@ -8,9 +7,9 @@ param(
 )
 
 
-  Set-Item -Path Env:TARGETARCH -Value "linux-x64"; 
-  Set-Item -Path Env:AZP_URL -Value "https://dev.azure.com/nuuvers"; 
-  Set-Item -Path Env:AZP_PAT -Value "jyczbexxxxxxxxxxxxxxxxxxx"; 
+Set-Item -Path Env:TARGETARCH -Value "linux-x64"; 
+Set-Item -Path Env:AZP_URL -Value "https://dev.azure.com/nuuvers"; 
+Set-Item -Path Env:AZP_PAT -Value "jyczbexxxxxxxxxxxxxxxxxxx"; 
 
 
 
@@ -25,8 +24,7 @@ Set-Location $pathAgent
 
 
 if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
-  
-  
+    
   ##[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     
   $Method = "GET"
@@ -56,7 +54,5 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   tar -xvzf $objRetorno.value[0].filename -C $pathAgent
 
   Remove-Item -Path $objRetorno.value[0].filename
-
-  #./install-azcli.ps1
-    
+   
 }

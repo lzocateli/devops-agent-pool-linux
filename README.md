@@ -3,7 +3,7 @@
 ## Supported
 
 - [`scripts` (*agent-pool/scripts*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/agent)
-- [`docker` (*agent-pool/Dockerfile*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/docker)
+- [`docker` (*agent-pool/Dockerfile*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/linux)
 
 [![Downloads from Docker Hub](https://img.shields.io/docker/pulls/lzocateli/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/lzocateli/devops-agent-pool-linux)
 [![Stars on Docker Hub](https://img.shields.io/docker/stars/lzocateli/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/lzocateli/devops-agent-pool-linux) 
@@ -69,5 +69,4 @@ If you do not want to use a volume on the host, just remove the -v line from doc
 ## Maintainers
 
 * [email: Lincoln Zocateli](mailto:lzocateli00@outlook.com), [facebook: Lincoln Zocateli](https://www.facebook.com/lzocateli00), [twitter: @lzocateli00](https://twitter.com/lzocateli00)
-
 

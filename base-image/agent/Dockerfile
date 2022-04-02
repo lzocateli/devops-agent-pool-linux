@@ -1,4 +1,4 @@
-FROM lzocateli/azdo-agents/linux-x64:1.0.0 AS build
+FROM nuuvedevops/azdo-agents:linux-x64-1.0.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
@@ -26,7 +26,10 @@ ENV TARGETARCH=linux-x64
 
 WORKDIR /azp
 
-COPY ./start.sh .
-RUN chmod +x start.sh
+COPY ./*.ps1 .
+RUN chmod +x *.ps1
 
-ENTRYPOINT ["./start.sh"]
+RUN ./install-agent.ps1 $PWD
+
+# ENTRYPOINT ["./start.sh"]
+CMD ["./ConfigureOrRun.ps1" ]
