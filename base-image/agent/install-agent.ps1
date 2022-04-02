@@ -3,14 +3,19 @@
 [CmdletBinding()] 
 param(
   [Parameter(Position = 0, Mandatory, ValueFromPipeline)]
-  [string] $pathAgent = "~/agent"
+  [string] $pathAgent = "~/agent",
+  [Parameter(Position = 1, Mandatory, ValueFromPipeline)]
+  [string] $targetArchPlataform = "linux-x64",
+  [Parameter(Position = 2, Mandatory, ValueFromPipeline)]
+  [string] $urlYourDevOps = "https://dev.azure.com/yourdevops",
+  [Parameter(Position = 3, Mandatory, ValueFromPipeline)]
+  [string] $patYourDevOps = "jyczbexxxxxxxxxxxxxxxxxxx"
 )
 
 
-Set-Item -Path Env:TARGETARCH -Value "linux-x64"; 
-Set-Item -Path Env:AZP_URL -Value "https://dev.azure.com/nuuvers"; 
-Set-Item -Path Env:AZP_PAT -Value "jyczbexxxxxxxxxxxxxxxxxxx"; 
-
+Set-Item -Path Env:TARGETARCH -Value $targetArchPlataform 
+Set-Item -Path Env:AZP_URL -Value $urlYourDevOps
+Set-Item -Path Env:AZP_PAT -Value $patYourDevOps 
 
 
 
@@ -42,8 +47,8 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   $objRetorno = Invoke-RestMethod -Uri $ApiUrl `
     -Method $Method `
     -ContentType "application/json" `
-    -Headers $headers `
-    -Proxy $WebProxy.Address.OriginalString
+    -Headers $headers
+  #-Proxy $WebProxy.Address.OriginalString
 
 
   Invoke-WebRequest `
@@ -55,4 +60,7 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
 
   Remove-Item -Path $objRetorno.value[0].filename
    
+}
+else {
+  Write-Host "Agent is already installed... $pathAgent/bin/Agent.Listener.dll"
 }

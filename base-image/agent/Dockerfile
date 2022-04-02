@@ -21,6 +21,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
     && rm -rf /var/lib/apt/lists/*
 
+
+ARG Env_HttpProxy
+ARG Env_NoProxy
+ARG Env_UrlYourDevOps
+ARG Env_PatYourDevOps
+
+ENV HTTPS_PROXY=$Env_HttpProxy
+ENV HTTP_PROXY=$Env_HttpProxy
+ENV NO_PROXY=$Env_NoProxy
+
 # Can be 'linux-x64', 'linux-arm64', 'linux-arm', 'rhel.6-x64'.
 ENV TARGETARCH=linux-x64 
 
@@ -29,7 +39,7 @@ WORKDIR /azp
 COPY ./*.ps1 .
 RUN chmod +x *.ps1
 
-RUN ./install-agent.ps1 $PWD
+RUN ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform $TARGETARCH -urlYourDevOps $Env_UrlYourDevOps -patYourDevOps $Env_PatYourDevOps
 
 # ENTRYPOINT ["./start.sh"]
 CMD ["./ConfigureOrRun.ps1" ]
