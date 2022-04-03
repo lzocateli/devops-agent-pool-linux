@@ -36,6 +36,9 @@ docker run --name devops-agent01-linux `
     -e AZP_POOL=your agent pool name `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
+    -e HTTP_PROXY=http://proxy.domain.com:80 `
+    -e HTTPS_PROXY=http://proxy.domain.com:80 `
+    -e NO_PROXY=domain.com `
     -v /var/azagent-01:/data `
     nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0 
 ````
@@ -51,6 +54,9 @@ docker run --name devops-agent01-linux `
     -e AZP_POOL=your agent pool name `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
+    -e HTTP_PROXY=http://proxy.domain.com:80 `
+    -e HTTPS_PROXY=http://proxy.domain.com:80 `
+    -e NO_PROXY=domain.com `
     -v /var/azagent-01:/data `
     nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````

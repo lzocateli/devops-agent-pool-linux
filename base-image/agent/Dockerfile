@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl1.0 \
     zip \
     unzip \
+    apt-utils \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
     && rm -rf /var/lib/apt/lists/*
 
-#    libicu60 \
 
 ARG Env_HttpProxy
 ARG Env_NoProxy
@@ -42,5 +42,4 @@ RUN chmod +x *.ps1
 
 RUN ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform $TARGETARCH -urlYourDevOps $Env_UrlYourDevOps -patYourDevOps $Env_PatYourDevOps
 
-# ENTRYPOINT ["./start.sh"]
 CMD ["./ConfigureOrRun.ps1"]
