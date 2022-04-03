@@ -1,17 +1,18 @@
 #!/bin/pwsh
 #Esse script esta sendo executado dentro do container
+
 [CmdletBinding()] 
 param(
   [Parameter(Position = 0, Mandatory, ValueFromPipeline)]
-  [string]$pathAgent = "C:\agent"
+  [string]$pathAgent = "~/agent"
 )
 
 
 Write-Host "Starting: $($MyInvocation.MyCommand.Definition)"
 
 if (-not (Test-Path $pathAgent)) {
-    Write-Host "Path agent: $pathAgent not found"
-    Exit 1
+  Write-Host "Path agent: $pathAgent not found"
+  Exit 1
 }
 
 

@@ -1,9 +1,10 @@
 #!/bin/pwsh
 #Esse script esta sendo executado dentro do container
+
 [CmdletBinding()] 
 param(
     [Parameter(Position = 0, Mandatory, ValueFromPipeline)]
-    [string]$pathAgent = "C:\agent"
+    [string]$pathAgent = "~/agent"
 )
 
 

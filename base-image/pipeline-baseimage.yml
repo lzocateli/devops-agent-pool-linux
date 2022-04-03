@@ -11,6 +11,10 @@ parameters:
     displayName: "Dockerfile path, example: base-image/linux"
     type: string
     default: ""
+  - name: imageArguments
+    displayName: "Image arguments, example: --build-arg Env_HttpProxy=proxy.mydomain.com:80"
+    type: string
+    default: " "
 
 trigger: none
 
@@ -38,6 +42,7 @@ stages:
               command: "build"
               Dockerfile: "${{ parameters.DockerFilePath }}/Dockerfile"
               tags: "${{ parameters.imageVersion }}"
+              arguments: "${{ parameters.imageArguments }}"
 
           - task: Docker@2
             displayName: "Docker Push"

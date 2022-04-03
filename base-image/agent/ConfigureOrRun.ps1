@@ -4,7 +4,7 @@
 [CmdletBinding()] 
 param(
   [Parameter(Position = 0, Mandatory, ValueFromPipeline)]
-  [string]$pathAgent = "~\agent"
+  [string]$pathAgent = "~/agent"
 )
 
 
