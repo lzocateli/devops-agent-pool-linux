@@ -49,7 +49,7 @@ stages:
                     $arrayByPass = "${{ parameters.proxyBypassConfig }}" -split ","
 
                     foreach ($item in $arrayByPass) {
-                      Write-Host "Include proxy bypass item: $item"
+                      Write-Host "Include proxy bypass item: $PWD $item"
                       Write-Output $item.Trim() >>.proxybypass
                     }
                   errorActionPreference: stop
