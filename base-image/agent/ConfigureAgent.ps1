@@ -32,13 +32,16 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_WORK)) {
     $env:AZP_WORK = '_work'
 }
 
+if ($false -eq [string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
+    $env:PROXY_CONFIG = "--proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD"
+}
+
 
 $pathAgentCredential = "$pathAgent/.credentials" 
 if (-not (Test-Path $pathAgentCredential)) {
 
     $ActualPath = $PWD
     $PAT = $env:AZP_TOKEN
-    
     $env:AZP_TOKEN = ""
     
 
@@ -47,15 +50,17 @@ if (-not (Test-Path $pathAgentCredential)) {
     Write-Host "Executing config.cmd CONFIGURE in $PWD ..." -ForegroundColor Cyan
 
 
-    ./config.cmd `
+    ./config.sh `
         --url $env:AZP_URL `
         --pool $env:AZP_POOL `
         --auth PAT `
         --token $PAT `
         --agent $env:AZP_AGENT_NAME `
         --work $env:AZP_WORK `
-        --unattended
-
+        --unattended `
+        $PROXY_CONFIG
+    
+    #    ./config.sh --proxyurl http://127.0.0.1:8888 --proxyusername "myuser" --proxypassword "mypass"
     
     Set-Location $ActualPath 
 

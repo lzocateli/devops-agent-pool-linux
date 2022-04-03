@@ -5,12 +5,12 @@
 - [`scripts` (*agent-pool/scripts*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/agent)
 - [`docker` (*agent-pool/Dockerfile*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/linux)
 
-[![Downloads from Docker Hub](https://img.shields.io/docker/pulls/lzocateli/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/lzocateli/devops-agent-pool-linux)
-[![Stars on Docker Hub](https://img.shields.io/docker/stars/lzocateli/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/lzocateli/devops-agent-pool-linux) 
+[![Downloads from Docker Hub](https://img.shields.io/docker/pulls/nuuvedevops/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/nuuvedevops/devops-agent-pool-linux)
+[![Stars on Docker Hub](https://img.shields.io/docker/stars/nuuvedevops/devops-agent-pool-linux.svg)](https://registry.hub.docker.com/u/nuuvedevops/devops-agent-pool-linux) 
 
-[![](https://images.microbadger.com/badges/image/lzocateli/devops-agent-pool-linux.svg)](https://microbadger.com/images/lzocateli/devops-agent-pool-linux "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/nuuvedevops/devops-agent-pool-linux.svg)](https://microbadger.com/images/nuuvedevops/devops-agent-pool-linux "Get your own image badge on microbadger.com")
 
-[![](https://images.microbadger.com/badges/version/lzocateli/devops-agent-pool-linux.svg)](https://microbadger.com/images/lzocateli/devops-agent-pool-linux "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/nuuvedevops/devops-agent-pool-linux.svg)](https://microbadger.com/images/nuuvedevops/devops-agent-pool-linux "Get your own version badge on microbadger.com")
 
 ## Configuration
 
@@ -29,7 +29,7 @@ On a Mac, use Docker for Mac, or directy on Linux, run in bash:
 To start a container in detached mode:
 
 ````pwsh
-docker run --name devops-agent-pool-linux `
+docker run --name devops-agent01-linux `
     -d `
     -e AZP_URL=https://dev.azure.com/your_subscription/ `
     -e AZP_TOKEN=your PAT `
@@ -37,13 +37,13 @@ docker run --name devops-agent-pool-linux `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
     -v /var/azagent-01:/data `
-    lzocateli/devops-agent-pool-linux:1.0.0 
+    nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0 
 ````
 
 To start a container in foreground mode:
 
 ````pwsh
-docker run --name devops-agent-pool-linux `
+docker run --name devops-agent01-linux `
     -ti `
     --rm `
     -e AZP_URL=https://dev.azure.com/your_subscription/ `
@@ -52,7 +52,7 @@ docker run --name devops-agent-pool-linux `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
     -v /var/azagent-01:/data `
-    lzocateli/devops-agent-pool-linux:1.0.0 
+    nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````
 
 The -v parameter indicates that a volume is being mounted on the container host, 

@@ -37,9 +37,10 @@ ENV TARGETARCH=linux-x64
 WORKDIR /azp
 
 COPY ./*.ps1 .
+COPY ./.proxybypass .
 RUN chmod +x *.ps1
 
 RUN ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform $TARGETARCH -urlYourDevOps $Env_UrlYourDevOps -patYourDevOps $Env_PatYourDevOps
 
 # ENTRYPOINT ["./start.sh"]
-CMD ["./ConfigureOrRun.ps1" ]
+CMD ["./ConfigureOrRun.ps1"]

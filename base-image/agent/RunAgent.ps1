@@ -17,4 +17,4 @@ Set-Location $pathAgent
     
 Write-Host "Executing run.cmd in $PWD ..."
 
-./run.cmd
+./run.sh

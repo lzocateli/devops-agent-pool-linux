@@ -15,6 +15,10 @@ parameters:
     displayName: "Image arguments, example: --build-arg Env_HttpProxy=proxy.mydomain.com:80"
     type: string
     default: " "
+  - name: proxyBypassConfig
+    displayName: "Array bypass example: yourdns\\.com github\\.com"
+    type: object
+    default: []
 
 trigger: none
 
@@ -32,6 +36,19 @@ stages:
         steps:
           - checkout: self
             displayName: "Git clone self reposytory"
+
+          - ${{ if ne(length(parameters.proxyBypassConfig), 0) }}:
+              - task: PowerShell@2
+                displayName: "Create proxybypass"
+                enabled: true
+                inputs:
+                  targetType: "inline"
+                  script: |
+                    Set-Location "${{ parameters.DockerFilePath }}/"
+
+                    Write-Output "${{ parameters.proxyBypassConfig }}">.proxybypass
+                  errorActionPreference: stop
+                  ignoreLASTEXITCODE: false
 
           - task: Docker@2
             displayName: "Docker Build"
