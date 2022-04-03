@@ -37,7 +37,7 @@ stages:
           - checkout: self
             displayName: "Git clone self reposytory"
 
-          - ${{ if ne(startsWith(parameters.proxyBypassConfig, ' ')) }}:
+          - ${{ if ne(startsWith(parameters.proxyBypassConfig, ' '), true) }}:
               - task: PowerShell@2
                 displayName: "Create proxybypass"
                 enabled: true
