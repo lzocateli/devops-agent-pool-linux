@@ -47,8 +47,8 @@ stages:
                     Set-Location "${{ parameters.DockerFilePath }}/"
 
                     foreach ($item in ${{ parameters.proxyBypassConfig }}) {
-                      Write-Host "Include proxy bypass item: $item"
-                      Write-Output $item >>.proxybypass
+                      Write-Host "Include proxy bypass item: $item.key"
+                      Write-Output $item.key >>.proxybypass
                     }
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
