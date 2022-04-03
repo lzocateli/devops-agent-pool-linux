@@ -62,13 +62,12 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
 
     Exit 0
   }
-  Catch [System.Net.WebException] {
+  Catch [System.Exception] {
     Write-Host "------------ Exception -----------------------"
     Write-Host $_.Exception 
 
     $exceptionJson = $_.ErrorDetails | ConvertTo-Json
 
-    Write-Output "$exceptionJson">>$pathFileLog
     Write-Host "$exceptionJson"
     
     Exit 1
