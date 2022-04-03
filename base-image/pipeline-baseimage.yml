@@ -16,9 +16,9 @@ parameters:
     type: string
     default: " "
   - name: proxyBypassConfig
-    displayName: "Array bypass example: yourdns\\.com github\\.com"
-    type: object
-    default: []
+    displayName: "Array bypass example: yourdns\\.com, github\\.com"
+    type: string
+    default: " "
 
 trigger: none
 
@@ -37,7 +37,7 @@ stages:
           - checkout: self
             displayName: "Git clone self reposytory"
 
-          - ${{ if ne(length(parameters.proxyBypassConfig), 0) }}:
+          - ${{ if ne(startsWith(parameters.proxyBypassConfig, ' ') }}:
               - task: PowerShell@2
                 displayName: "Create proxybypass"
                 enabled: true
@@ -46,9 +46,11 @@ stages:
                   script: |
                     Set-Location "${{ parameters.DockerFilePath }}/"
 
-                    foreach ($item in ${{ parameters.proxyBypassConfig }}) {
-                      Write-Host "Include proxy bypass item: $item.key"
-                      Write-Output $item.key >>.proxybypass
+                    $arrayByPass = parameters.proxyBypassConfig.Split(',')
+
+                    foreach ($item in $arrayByPass) {
+                      Write-Host "Include proxy bypass item: $item"
+                      Write-Output $item >>.proxybypass
                     }
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
