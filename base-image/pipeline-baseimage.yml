@@ -46,7 +46,7 @@ stages:
                   script: |
                     Set-Location "${{ parameters.DockerFilePath }}/"
 
-                    $arrayByPass = ${{ parameters.proxyBypassConfig }} -split ","
+                    $arrayByPass = "${{ parameters.proxyBypassConfig }}" -split ","
 
                     foreach ($item in $arrayByPass) {
                       Write-Host "Include proxy bypass item: $item"
