@@ -46,11 +46,11 @@ stages:
                   script: |
                     Set-Location "${{ parameters.DockerFilePath }}/"
 
-                    $arrayByPass = parameters.proxyBypassConfig.Split(',')
+                    $arrayByPass = parameters.proxyBypassConfig -split ","
 
                     foreach ($item in $arrayByPass) {
                       Write-Host "Include proxy bypass item: $item"
-                      Write-Output $item >>.proxybypass
+                      Write-Output $item.Trim() >>.proxybypass
                     }
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
