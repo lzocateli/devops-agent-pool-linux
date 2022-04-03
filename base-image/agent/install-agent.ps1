@@ -13,9 +13,9 @@ param(
 )
 
 
-Set-Item -Path Env:TARGETARCH -Value $targetArchPlataform 
-Set-Item -Path Env:AZP_URL -Value $urlYourDevOps
-Set-Item -Path Env:AZP_PAT -Value $patYourDevOps 
+# Set-Item -Path Env:TARGETARCH -Value $targetArchPlataform 
+# Set-Item -Path Env:AZP_URL -Value $urlYourDevOps
+# Set-Item -Path Env:AZP_PAT -Value $patYourDevOps 
 
 
 
@@ -33,11 +33,11 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   ##[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     
   $Method = "GET"
-  $ApiUrl = "$env:AZP_URL/_apis/distributedtask/packages/agent?platform=$env:TARGETARCH&top=1"
+  $ApiUrl = "$urlYourDevOps/_apis/distributedtask/packages/agent?platform=$targetArchPlataform&top=1"
 
   Write-Host "Downloading Azure Pipelines agent... $ApiUrl" -ForegroundColor Cyan
 
-  $Base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $env:AZP_PAT)))
+  $Base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $patYourDevOps)))
 
   $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
   $headers.Add("Accept", "application/json")
