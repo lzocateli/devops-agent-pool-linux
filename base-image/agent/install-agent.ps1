@@ -43,22 +43,36 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   $headers.Add("Accept", "application/json")
   $headers.Add("Authorization", "Basic $Base64AuthInfo")
 
-
-  $objRetorno = Invoke-RestMethod -Uri $ApiUrl `
-    -Method $Method `
-    -ContentType "application/json" `
-    -Headers $headers
-  #-Proxy $WebProxy.Address.OriginalString
-
-
-  Invoke-WebRequest `
-    -Uri $objRetorno.value[0].downloadUrl `
-    -OutFile $objRetorno.value[0].filename
-
+  try {
+  
+    $objRetorno = Invoke-RestMethod -Uri $ApiUrl `
+      -Method $Method `
+      -ContentType "application/json" `
+      -Headers $headers
+    #-Proxy $WebProxy.Address.OriginalString
+  
+  
+    Invoke-WebRequest -Uri $objRetorno.value[0].downloadUrl `
+      -OutFile $objRetorno.value[0].filename
+  
    
-  tar -xvzf $objRetorno.value[0].filename -C $pathAgent
+    tar -xvzf $objRetorno.value[0].filename -C $pathAgent
+  
+    Remove-Item -Path $objRetorno.value[0].filename
 
-  Remove-Item -Path $objRetorno.value[0].filename
+    Exit 0
+  }
+  Catch [System.Net.WebException] {
+    Write-Host "------------ Exception -----------------------"
+    Write-Host $_.Exception 
+
+    $exceptionJson = $_.ErrorDetails | ConvertTo-Json
+
+    Write-Output "$exceptionJson">>$pathFileLog
+    Write-Host "$exceptionJson"
+    
+    Exit 1
+  }
    
 }
 else {
