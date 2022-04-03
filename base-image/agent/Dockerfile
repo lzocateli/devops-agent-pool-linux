@@ -36,7 +36,7 @@ ENV TARGETARCH=linux-x64
 
 WORKDIR /azp
 
-COPY ./*.ps1 .
+COPY ./*.ps1 /azp
 COPY ./.proxybypass .
 RUN chmod +x *.ps1
 
