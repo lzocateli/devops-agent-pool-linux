@@ -36,6 +36,7 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   $ApiUrl = "$urlYourDevOps/_apis/distributedtask/packages/agent?platform=$targetArchPlataform&top=1"
 
   Write-Host "Downloading Azure Pipelines agent... $ApiUrl" -ForegroundColor Cyan
+  Write-Host "PAT $patYourDevOps"
 
   $Base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $patYourDevOps)))
 

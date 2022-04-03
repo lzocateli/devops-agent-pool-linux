@@ -40,6 +40,8 @@ COPY ./*.ps1 ./
 # COPY ./.proxybypass .
 RUN chmod +x *.ps1
 
+RUN echo "PAT container env: $Env_PatYourDevOps"
+
 RUN ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform $TARGETARCH -urlYourDevOps $Env_UrlYourDevOps -patYourDevOps $Env_PatYourDevOps
 
 RUN pwd
