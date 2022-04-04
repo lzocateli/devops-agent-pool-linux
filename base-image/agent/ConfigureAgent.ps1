@@ -39,14 +39,18 @@ if (-not (Test-Path $pathAgentCredential)) {
     $ActualPath = $PWD
     $PAT = $env:AZP_TOKEN
     $env:AZP_TOKEN = ""
-    
+    $AgentName = "$env:AZP_AGENT_NAME-$env:HOSTNAME"
 
     Set-Location $pathAgent
  
-    Write-Host "Executing config.sh CONFIGURE in $PWD ..." -ForegroundColor Cyan
+    Write-Host "Executing config.sh CONFIGURE in $PWD ... " -ForegroundColor Cyan
+    Write-Host "url: $env:AZP_URL " -ForegroundColor Cyan
+    Write-Host "pool: $env:AZP_POOL " -ForegroundColor Cyan
+    Write-Host "token: $PAT " -ForegroundColor Cyan
+    Write-Host "agent: $AgentName " -ForegroundColor Cyan
+    Write-Host "work: $env:AZP_WORK " -ForegroundColor Cyan
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
-    #export AGENT_ALLOW_RUNASROOT="1"
 
     ./env.sh
 
@@ -60,7 +64,7 @@ if (-not (Test-Path $pathAgentCredential)) {
             --pool $env:AZP_POOL `
             --auth PAT `
             --token $PAT `
-            --agent "$env:AZP_AGENT_NAME-$env:HOSTNAME" `
+            --agent $AgentName `
             --work $env:AZP_WORK `
             --acceptTeeEula 
             
@@ -76,7 +80,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --pool $env:AZP_POOL `
                 --auth PAT `
                 --token $PAT `
-                --agent $env:AZP_AGENT_NAME `
+                --agent $AgentName `
                 --work $env:AZP_WORK `
                 --proxyurl $HTTP_PROXY `
                 --acceptTeeEula 
@@ -88,7 +92,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --pool $env:AZP_POOL `
                 --auth PAT `
                 --token $PAT `
-                --agent $env:AZP_AGENT_NAME `
+                --agent $AgentName `
                 --work $env:AZP_WORK `
                 --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD `
                 --acceptTeeEula 
