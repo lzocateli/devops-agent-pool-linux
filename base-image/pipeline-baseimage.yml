@@ -70,10 +70,6 @@ stages:
                 inputs:
                   targetType: "inline"
                   script: |
-                    # if ([string]::IsNullOrWhiteSpace("${{ parameters.devopsUrlSubscription }}")) {
-                    #   Write-Host "devopsUrlSubscription Can not be null"
-                    #   Exit 1
-                    # }
                     if ([string]::IsNullOrWhiteSpace("${{ parameters.agetTargetArch }}")) {
                       Write-Host "agetTargetArch Can not be null"
                       Exit 1
