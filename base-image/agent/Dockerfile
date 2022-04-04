@@ -40,4 +40,4 @@ RUN chmod +x *.ps1
 
 RUN ls -la
 
-CMD ["./ConfigureOrRun.ps1", $PWD]
+CMD ["./ConfigureOrRun.ps1", pwd]

@@ -15,6 +15,6 @@ Set-Item -Path Env:AZP_TOKEN -Value "";
 
 Set-Location $pathAgent
     
-Write-Host "Executing run.cmd in $PWD ..."
+Write-Host "Executing run.sh in $PWD ..."
 
 ./run.sh
