@@ -23,7 +23,7 @@ parameters:
     displayName: "Execute script to Install Agent ?"
     type: boolean
     default: false
-  - name: agetTargetArch
+  - name: agentTargetArch
     displayName: "Target arch agent"
     type: string
     default: linux-x64
@@ -78,15 +78,15 @@ stages:
                 inputs:
                   targetType: "inline"
                   script: |
-                    if ([string]::IsNullOrWhiteSpace("${{ parameters.agetTargetArch }}")) {
-                      Write-Host "agetTargetArch Can not be null"
+                    if ([string]::IsNullOrWhiteSpace("${{ parameters.agentTargetArch }}")) {
+                      Write-Host "agentTargetArch Can not be null"
                       Exit 1
                     }
 
                     Set-Location "${{ parameters.DockerFilePath }}"
                     ls -la
 
-                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $(PatDevOps)
+                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agentTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $(PatDevOps)
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
 
