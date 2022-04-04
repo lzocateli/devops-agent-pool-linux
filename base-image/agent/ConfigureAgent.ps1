@@ -34,6 +34,12 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_WORK)) {
 
 if ($false -eq [string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
     $env:PROXY_CONFIG = "--proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD"
+
+    $arrayByPass = $NO_PROXY -split ","
+
+    foreach ($item in $arrayByPass) {
+        Write-Output $item.Trim() >>.proxybypass
+    }
 }
 
 
