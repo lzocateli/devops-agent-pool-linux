@@ -32,16 +32,6 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_WORK)) {
     $env:AZP_WORK = '_work'
 }
 
-if ($false -eq [string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
-    $env:PROXY_CONFIG = "--proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD"
-
-    $arrayByPass = $NO_PROXY -split ","
-
-    foreach ($item in $arrayByPass) {
-        Write-Output $item.Trim() >>.proxybypass
-    }
-}
-
 
 $pathAgentCredential = "$pathAgent/.credentials" 
 if (-not (Test-Path $pathAgentCredential)) {
@@ -55,16 +45,46 @@ if (-not (Test-Path $pathAgentCredential)) {
  
     Write-Host "Executing config.cmd CONFIGURE in $PWD ..." -ForegroundColor Cyan
 
+    if ([string]::IsNullOrWhiteSpace($(HTTP_PROXY))) {
 
-    ./config.sh `
-        --url $env:AZP_URL `
-        --pool $env:AZP_POOL `
-        --auth PAT `
-        --token $PAT `
-        --agent $env:AZP_AGENT_NAME `
-        --work $env:AZP_WORK `
-        --unattended `
-        $PROXY_CONFIG
+        ./config.sh `
+            --url $env:AZP_URL `
+            --pool $env:AZP_POOL `
+            --auth PAT `
+            --token $PAT `
+            --agent $env:AZP_AGENT_NAME `
+            --work $env:AZP_WORK `
+            --unattended 
+    }
+    else {
+
+        if ([string]::IsNullOrWhiteSpace($(PROXY_USER))) {
+            
+            ./config.sh `
+                --url $env:AZP_URL `
+                --pool $env:AZP_POOL `
+                --auth PAT `
+                --token $PAT `
+                --agent $env:AZP_AGENT_NAME `
+                --work $env:AZP_WORK `
+                --unattended `
+                --proxyurl $HTTP_PROXY
+        }
+        else {
+            
+            ./config.sh `
+                --url $env:AZP_URL `
+                --pool $env:AZP_POOL `
+                --auth PAT `
+                --token $PAT `
+                --agent $env:AZP_AGENT_NAME `
+                --work $env:AZP_WORK `
+                --unattended `
+                --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD
+        }
+
+    }
+
     
     #    ./config.sh --proxyurl http://127.0.0.1:8888 --proxyusername "myuser" --proxypassword "mypass"
     
