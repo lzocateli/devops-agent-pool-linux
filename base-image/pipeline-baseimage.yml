@@ -40,6 +40,9 @@ stages:
 
         pool:
           vmimage: ubuntu-latest
+        
+        variables:
+        - group: 'Project-Variables'
 
         steps:
           - checkout: self
