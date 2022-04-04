@@ -45,7 +45,7 @@ if (-not (Test-Path $pathAgentCredential)) {
  
     Write-Host "Executing config.cmd CONFIGURE in $PWD ..." -ForegroundColor Cyan
 
-    if ([string]::IsNullOrWhiteSpace($(HTTP_PROXY))) {
+    if ([string]::IsNullOrWhiteSpace($HTTP_PROXY)) {
 
         ./config.sh `
             --url $env:AZP_URL `
@@ -58,7 +58,7 @@ if (-not (Test-Path $pathAgentCredential)) {
     }
     else {
 
-        if ([string]::IsNullOrWhiteSpace($(PROXY_USER))) {
+        if ([string]::IsNullOrWhiteSpace($PROXY_USER)) {
             
             ./config.sh `
                 --url $env:AZP_URL `
