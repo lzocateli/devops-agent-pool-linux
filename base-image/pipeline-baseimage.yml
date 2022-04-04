@@ -85,8 +85,9 @@ stages:
 
                     Set-Location "${{ parameters.DockerFilePath }}"
                     ls -la
+                    gci env:
 
-                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps ${{ parameters.devopsUrlSubscription }} -patYourDevOps $PatDevOps
+                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps ${{ parameters.devopsUrlSubscription }} -patYourDevOps $(PatDevOps)
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
 
