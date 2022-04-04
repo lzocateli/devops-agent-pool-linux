@@ -32,7 +32,7 @@ ENV NO_PROXY=$Env_NoProxy
 # Can be 'linux-x64', 'linux-arm64', 'linux-arm', 'rhel.6-x64'.
 ENV TARGETARCH=linux-x64 
 
-WORKDIR /azp
+WORKDIR /agent
 
 COPY ./*.ps1 ./
 COPY . ./
