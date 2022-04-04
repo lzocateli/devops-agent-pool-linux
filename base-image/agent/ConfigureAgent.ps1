@@ -43,7 +43,7 @@ if (-not (Test-Path $pathAgentCredential)) {
 
     Set-Location $pathAgent
  
-    Write-Host "Executing config.cmd CONFIGURE in $PWD ..." -ForegroundColor Cyan
+    Write-Host "Executing config.sh CONFIGURE in $PWD ..." -ForegroundColor Cyan
 
     if ([string]::IsNullOrWhiteSpace($HTTP_PROXY)) {
 

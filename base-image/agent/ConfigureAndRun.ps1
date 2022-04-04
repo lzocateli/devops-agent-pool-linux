@@ -22,11 +22,11 @@ Get-Process -Name $agentName
 Stop-Process -Name $agentName
 
 
-Write-Host "Starting configuration for $env:COMPUTERNAME ...  in $pathAgent"
+Write-Host "Starting configuration for $env:HOSTNAME ...  in $pathAgent"
 ./ConfigureAgent.ps1 $pathAgent
 
 [Int32]$zero = 0
 if ($LASTEXITCODE -eq $zero) {
-  Write-Host "Configuration done. Starting run for $env:COMPUTERNAME ...  in $pathAgent"
+  Write-Host "Configuration done. Starting run for $env:HOSTNAME ...  in $pathAgent"
   ./RunAgent.ps1 $pathAgent
 }
