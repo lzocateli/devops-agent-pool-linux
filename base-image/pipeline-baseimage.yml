@@ -23,10 +23,6 @@ parameters:
     displayName: "Execute script to Install Agent ?"
     type: boolean
     default: false
-  # - name: devopsUrlSubscription
-  #   displayName: "Example: https://dev.azure.com/nuuvers"
-  #   type: string
-  #   default: " "
   - name: agetTargetArch
     displayName: "Example: linux-x64, linux-arm64, linux-arm, rhel.6-x64"
     type: string
