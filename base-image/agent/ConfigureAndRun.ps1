@@ -18,8 +18,10 @@ if (-not (Test-Path $pathAgent)) {
 
 $agentName = "Agent.Listener"
 Write-Host "Stopping $agentName ..."
-Get-Process -Name $agentName
-Stop-Process -Name $agentName
+$processAgent = Get-Process *$agentName*
+if ($false -eq [string]::IsNullOrWhiteSpace($processAgent)) {
+  Stop-Process *$agentName*
+}
 
 
 Write-Host "Starting configuration for $env:HOSTNAME ...  in $pathAgent"

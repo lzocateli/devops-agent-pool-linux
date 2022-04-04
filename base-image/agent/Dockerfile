@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
     unzip \
     apt-utils \
+    inetutils-traceroute \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \

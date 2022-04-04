@@ -1,5 +1,5 @@
 #!/bin/pwsh
-#Esse script esta sendo executado dentro do container
+
 
 [CmdletBinding()] 
 param(
@@ -18,4 +18,3 @@ Set-Location $pathAgent
 Write-Host "Executing run.sh in $PWD ..."
 
 ./run-docker.sh
-#./run.sh

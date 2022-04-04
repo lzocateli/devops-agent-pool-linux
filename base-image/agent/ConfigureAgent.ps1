@@ -1,5 +1,4 @@
 #!/bin/pwsh
-#Esse script esta sendo executado dentro do container
 
 [CmdletBinding()] 
 param(
@@ -66,6 +65,7 @@ if (-not (Test-Path $pathAgentCredential)) {
             --token $PAT `
             --agent $AgentName `
             --work $env:AZP_WORK `
+            --replace `
             --acceptTeeEula 
             
     }
@@ -83,6 +83,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --agent $AgentName `
                 --work $env:AZP_WORK `
                 --proxyurl $HTTP_PROXY `
+                --replace `
                 --acceptTeeEula 
         }
         else {
@@ -95,6 +96,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --agent $AgentName `
                 --work $env:AZP_WORK `
                 --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD `
+                --replace `
                 --acceptTeeEula 
         }
 
