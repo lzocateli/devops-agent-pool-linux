@@ -24,9 +24,14 @@ parameters:
     type: boolean
     default: false
   - name: agetTargetArch
-    displayName: "Example: linux-x64, linux-arm64, linux-arm, rhel.6-x64"
+    displayName: "Target arch agent"
     type: string
-    default: " "
+    default: linux-x64
+    values:
+      - linux-x64
+      - linux-arm64
+      - linux-arm
+      - rhel.6-x64
 
 trigger: none
 
@@ -40,9 +45,9 @@ stages:
 
         pool:
           vmimage: ubuntu-latest
-        
+
         variables:
-        - group: 'Project-Variables'
+          - group: "Project-Variables"
 
         steps:
           - checkout: self
@@ -80,7 +85,6 @@ stages:
 
                     Set-Location "${{ parameters.DockerFilePath }}"
                     ls -la
-                    gci env:
 
                     ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $(PatDevOps)
                   errorActionPreference: stop

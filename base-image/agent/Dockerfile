@@ -24,7 +24,6 @@ RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
 
 ARG Env_HttpProxy
 ARG Env_NoProxy
-ARG Env_UrlYourDevOps
 
 ENV HTTPS_PROXY=$Env_HttpProxy
 ENV HTTP_PROXY=$Env_HttpProxy
@@ -36,7 +35,6 @@ ENV TARGETARCH=linux-x64
 WORKDIR /azp
 
 COPY ./*.ps1 ./
-# COPY ./.proxybypass .
 COPY . ./
 RUN chmod +x *.ps1
 
