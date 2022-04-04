@@ -23,10 +23,10 @@ parameters:
     displayName: "Execute script to Install Agent ?"
     type: boolean
     default: false
-  - name: devopsUrlSubscription
-    displayName: "Example: https://dev.azure.com/nuuvers"
-    type: string
-    default: " "
+  # - name: devopsUrlSubscription
+  #   displayName: "Example: https://dev.azure.com/nuuvers"
+  #   type: string
+  #   default: " "
   - name: agetTargetArch
     displayName: "Example: linux-x64, linux-arm64, linux-arm, rhel.6-x64"
     type: string
@@ -74,10 +74,10 @@ stages:
                 inputs:
                   targetType: "inline"
                   script: |
-                    if ([string]::IsNullOrWhiteSpace("${{ parameters.devopsUrlSubscription }}")) {
-                      Write-Host "devopsUrlSubscription Can not be null"
-                      Exit 1
-                    }
+                    # if ([string]::IsNullOrWhiteSpace("${{ parameters.devopsUrlSubscription }}")) {
+                    #   Write-Host "devopsUrlSubscription Can not be null"
+                    #   Exit 1
+                    # }
                     if ([string]::IsNullOrWhiteSpace("${{ parameters.agetTargetArch }}")) {
                       Write-Host "agetTargetArch Can not be null"
                       Exit 1
@@ -87,7 +87,7 @@ stages:
                     ls -la
                     gci env:
 
-                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps ${{ parameters.devopsUrlSubscription }} -patYourDevOps $(PatDevOps)
+                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $Env:PatDevOps
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
 
