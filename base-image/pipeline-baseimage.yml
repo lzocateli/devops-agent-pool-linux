@@ -82,7 +82,7 @@ stages:
                     ls -la
                     gci env:
 
-                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $Env:PatDevOps
+                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agetTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $(PatDevOps)
                   errorActionPreference: stop
                   ignoreLASTEXITCODE: false
 
