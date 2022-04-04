@@ -38,4 +38,6 @@ COPY ./*.ps1 ./
 COPY . ./
 RUN chmod +x *.ps1
 
-CMD ["./ConfigureOrRun.ps1"]
+RUN ls -la
+
+CMD ["./ConfigureOrRun.ps1", $PWD]
