@@ -13,12 +13,6 @@ param(
 )
 
 
-# Set-Item -Path Env:TARGETARCH -Value $targetArchPlataform 
-# Set-Item -Path Env:AZP_URL -Value $urlYourDevOps
-# Set-Item -Path Env:AZP_PAT -Value $patYourDevOps 
-
-
-
 Write-Host "Starting: $($MyInvocation.MyCommand.Definition)"
 
 if (-not (Test-Path $pathAgent)) {
@@ -29,14 +23,11 @@ Set-Location $pathAgent
 
 
 if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
-    
-  ##[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    
+       
   $Method = "GET"
   $ApiUrl = "$urlYourDevOps/_apis/distributedtask/packages/agent?platform=$targetArchPlataform&top=1"
 
   Write-Host "Downloading Azure Pipelines agent... $ApiUrl" -ForegroundColor Cyan
-  Write-Host "PAT $patYourDevOps"
 
   $Base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "", $patYourDevOps)))
 
@@ -50,7 +41,6 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
       -Method $Method `
       -ContentType "application/json" `
       -Headers $headers
-    #-Proxy $WebProxy.Address.OriginalString
   
   
     Invoke-WebRequest -Uri $objRetorno.value[0].downloadUrl `
@@ -61,15 +51,16 @@ if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
   
     Remove-Item -Path $objRetorno.value[0].filename
 
+    ls $pathAgent
+    Write-Host "Agent downloaded in $pathAgent"
+
+
     Exit 0
   }
   Catch [System.Exception] {
     Write-Host "------------ Exception -----------------------"
     Write-Host $_.Exception 
-
-    $exceptionJson = $_.ErrorDetails | ConvertTo-Json
-
-    Write-Host "$exceptionJson"
+    Write-Host $_.ErrorDetails 
     
     Exit 1
   }

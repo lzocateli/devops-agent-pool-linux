@@ -25,7 +25,6 @@ RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
 ARG Env_HttpProxy
 ARG Env_NoProxy
 ARG Env_UrlYourDevOps
-ARG Env_PatYourDevOps
 
 ENV HTTPS_PROXY=$Env_HttpProxy
 ENV HTTP_PROXY=$Env_HttpProxy
@@ -38,13 +37,7 @@ WORKDIR /azp
 
 COPY ./*.ps1 ./
 # COPY ./.proxybypass .
+COPY . ./
 RUN chmod +x *.ps1
-
-RUN echo "PAT container env: $Env_PatYourDevOps"
-
-RUN ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform $TARGETARCH -urlYourDevOps $Env_UrlYourDevOps -patYourDevOps $Env_PatYourDevOps
-
-RUN pwd
-RUN ls -la
 
 CMD ["./ConfigureOrRun.ps1"]
