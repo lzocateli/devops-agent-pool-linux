@@ -17,4 +17,5 @@ Set-Location $pathAgent
     
 Write-Host "Executing run.sh in $PWD ..."
 
-./run.sh
+./run-docker.sh
+#./run.sh

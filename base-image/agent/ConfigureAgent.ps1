@@ -45,49 +45,58 @@ if (-not (Test-Path $pathAgentCredential)) {
  
     Write-Host "Executing config.sh CONFIGURE in $PWD ..." -ForegroundColor Cyan
 
+    Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
+    #export AGENT_ALLOW_RUNASROOT="1"
+
+    ./env.sh
+
+
     if ([string]::IsNullOrWhiteSpace($HTTP_PROXY)) {
 
-        ./config.sh `
+        Write-Host "Configuring without proxy in $PWD ..." -ForegroundColor Cyan
+
+        ./config.sh --unattended `
             --url $env:AZP_URL `
             --pool $env:AZP_POOL `
             --auth PAT `
             --token $PAT `
-            --agent $env:AZP_AGENT_NAME `
+            --agent "$env:AZP_AGENT_NAME-$env:HOSTNAME" `
             --work $env:AZP_WORK `
-            --unattended 
+            --acceptTeeEula 
+            
     }
     else {
 
+        Write-Host "Configuring with proxy in $PWD ..." -ForegroundColor Cyan
+
         if ([string]::IsNullOrWhiteSpace($PROXY_USER)) {
             
-            ./config.sh `
+            ./config.sh --unattended `
                 --url $env:AZP_URL `
                 --pool $env:AZP_POOL `
                 --auth PAT `
                 --token $PAT `
                 --agent $env:AZP_AGENT_NAME `
                 --work $env:AZP_WORK `
-                --unattended `
-                --proxyurl $HTTP_PROXY
+                --proxyurl $HTTP_PROXY `
+                --acceptTeeEula 
         }
         else {
             
-            ./config.sh `
+            ./config.sh --unattended `
                 --url $env:AZP_URL `
                 --pool $env:AZP_POOL `
                 --auth PAT `
                 --token $PAT `
                 --agent $env:AZP_AGENT_NAME `
                 --work $env:AZP_WORK `
-                --unattended `
-                --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD
+                --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD `
+                --acceptTeeEula 
         }
 
     }
 
-    
-    #    ./config.sh --proxyurl http://127.0.0.1:8888 --proxyusername "myuser" --proxypassword "mypass"
-    
+
     Set-Location $ActualPath 
 
 }
