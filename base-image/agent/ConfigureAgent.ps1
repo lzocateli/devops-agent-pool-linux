@@ -47,13 +47,14 @@ if (-not (Test-Path $pathAgentCredential)) {
     Write-Host "token: $PAT " -ForegroundColor Cyan
     Write-Host "agent: $env:AZP_AGENT_NAME " -ForegroundColor Cyan
     Write-Host "work: $env:AZP_WORK " -ForegroundColor Cyan
+    Write-Host "proxy: $env:HTTP_PROXY " -ForegroundColor Cyan
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
 
     ./env.sh
 
 
-    if ([string]::IsNullOrWhiteSpace($HTTP_PROXY)) {
+    if ([string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
 
         Write-Host "Configuring without proxy in $PWD ..." -ForegroundColor Cyan
 
@@ -70,9 +71,9 @@ if (-not (Test-Path $pathAgentCredential)) {
     }
     else {
 
-        Write-Host "Configuring with proxy in $PWD ..." -ForegroundColor Cyan
+        Write-Host "Configuring with proxy $($env:HTTP_PROXY) in $PWD ..." -ForegroundColor Cyan
 
-        if ([string]::IsNullOrWhiteSpace($PROXY_USER)) {
+        if ([string]::IsNullOrWhiteSpace($env:PROXY_USER)) {
             
             ./config.sh --unattended `
                 --url $env:AZP_URL `
@@ -81,7 +82,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --token $PAT `
                 --agent $env:AZP_AGENT_NAME `
                 --work $env:AZP_WORK `
-                --proxyurl $HTTP_PROXY `
+                --proxyurl $env:HTTP_PROXY `
                 --replace `
                 --acceptTeeEula 
         }
@@ -94,7 +95,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --token $PAT `
                 --agent $env:AZP_AGENT_NAME `
                 --work $env:AZP_WORK `
-                --proxyurl $HTTP_PROXY --proxyusername $PROXY_USER --proxypassword $PROXY_PASSWORD `
+                --proxyurl $env:HTTP_PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
                 --replace `
                 --acceptTeeEula 
         }
