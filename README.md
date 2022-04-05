@@ -22,7 +22,6 @@ For `agent`, you need to set these environment variables:
 Optionals environment variables:
 
 * `HTTP_PROXY` - If you have to use a proxy, this is where you should inform it
-* `HTTPS_PROXY` - Usually the same content of the HTTP_PROXY variable
 * `NO_PROXY` - List of domains that should not go through the proxy (serated by comma) Example: meudns.com,github.com
 (see **"Attention, if you use proxy"**)
 * `PROXY_USER` - If necessary, inform the username for proxy authentication
@@ -36,7 +35,7 @@ On a Mac, use Docker for Mac, or directy on Linux, run in bash:
 To start a container in detached mode:
 
 ````pwsh
-docker run --name devops-agent01-linux `
+docker run --name devops-agent01 `
     -d `
     -e AZP_URL=https://dev.azure.com/your_subscription `
     -e AZP_TOKEN=your PAT `
@@ -44,7 +43,6 @@ docker run --name devops-agent01-linux `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
     -e HTTP_PROXY=http://proxy.domain.com:80 `
-    -e HTTPS_PROXY=http://proxy.domain.com:80 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
@@ -55,7 +53,7 @@ docker run --name devops-agent01-linux `
 To start a container in foreground mode:
 
 ````pwsh
-docker run --name devops-agent01-linux `
+docker run --name devops-agent01 `
     -ti `
     --rm `
     -e AZP_URL=https://dev.azure.com/your_subscription `
@@ -64,7 +62,6 @@ docker run --name devops-agent01-linux `
     -e AZP_AGENT_NAME=your agent name `
     -e AZP_WORK=/agent/_work `
     -e HTTP_PROXY=http://proxy.domain.com:80 `
-    -e HTTPS_PROXY=http://proxy.domain.com:80 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
@@ -83,10 +80,10 @@ If you do not want to use a volume on the host, just remove the -v line from doc
 
 
 ## Attention, if you use proxy
-* Caso você estiver usando proxy, e possuir dominos em "NO_PROXY", você precisara fazer esse passo a passo:
+* If you are using a proxy, and you have domains in "NO_PROXY", you will need to do this step by step:
     1. git clone from this repository
-    2. Crie o arquivo ".proxybypass" dentro da pasta /base-image/agent/
-    3. Execute o comando para criação da sua imagem, conforme instruções em: /base-image/agent/readme.md  
+    2. Create the `.proxybypass` file inside the `/base-image/agent/` folder
+    3. Run the command to create your image, as instructed in: `/base-image/agent/readme.md`  
 
 ## Maintainers
 
