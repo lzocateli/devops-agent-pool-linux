@@ -106,3 +106,6 @@ if (-not (Test-Path $pathAgentCredential)) {
     Set-Location $ActualPath 
 
 }
+
+$env:AZP_TOKEN = ""
+$env:AZP_AGENT_NAME = ""
