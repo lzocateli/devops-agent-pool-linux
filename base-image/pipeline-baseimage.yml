@@ -1,3 +1,10 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: SharedKernel/pipelines-store
+      endpoint: SharedKernel-Repos
+
 parameters:
   - name: imageName
     displayName: "Name the image to be created, example: nuuvedevops/azdo-agents"
@@ -34,78 +41,17 @@ parameters:
       - rhel.6-x64
 
 trigger: none
+    
 
-stages:
-  - stage: "CreateImage"
-    displayName: "Create Conteiner Image"
+stages: 
 
-    jobs:
-      - job: "BuildImage"
-        displayName: "Build Image"
+- template: pipeline-templates/create-container-image.yml@templates
+  parameters:
+    imageName: ${{ parameters.imageName }}
+    imageVersion: ${{ parameters.imageVersion }}
+    DockerFilePath: ${{ parameters.DockerFilePath }}
+    imageArguments: ${{ parameters.imageArguments }}
+    proxyBypassConfig: ${{ parameters.proxyBypassConfig }}
+    executeInstallAgent: ${{ parameters.executeInstallAgent }}
+    agentTargetArch: ${{ parameters.agentTargetArch }}
 
-        pool:
-          vmimage: ubuntu-latest
-
-        variables:
-          - group: "Project-Variables"
-
-        steps:
-          - checkout: self
-            displayName: "Git clone self reposytory"
-
-          - ${{ if ne(startsWith(parameters.proxyBypassConfig, ' '), true) }}:
-              - task: PowerShell@2
-                displayName: "Create proxybypass"
-                enabled: true
-                inputs:
-                  targetType: "inline"
-                  script: |
-                    Set-Location "${{ parameters.DockerFilePath }}/"
-
-                    $arrayByPass = "${{ parameters.proxyBypassConfig }}" -split ","
-
-                    foreach ($item in $arrayByPass) {
-                      Write-Host "Include proxy bypass item: $PWD $item"
-                      Write-Output $item.Trim() >>.proxybypass
-                    }
-                  errorActionPreference: stop
-                  ignoreLASTEXITCODE: false
-
-          - ${{ if eq(parameters.executeInstallAgent, true) }}:
-              - task: PowerShell@2
-                displayName: "Download agent"
-                enabled: true
-                inputs:
-                  targetType: "inline"
-                  script: |
-                    if ([string]::IsNullOrWhiteSpace("${{ parameters.agentTargetArch }}")) {
-                      Write-Host "agentTargetArch Can not be null"
-                      Exit 1
-                    }
-
-                    Set-Location "${{ parameters.DockerFilePath }}"
-                    ls -la
-
-                    ./install-agent.ps1 -pathAgent $PWD -targetArchPlataform ${{ parameters.agentTargetArch }} -urlYourDevOps $(System.CollectionUri) -patYourDevOps $(PatDevOps)
-                  errorActionPreference: stop
-                  ignoreLASTEXITCODE: false
-
-          - task: Docker@2
-            displayName: "Docker Build"
-            enabled: true
-            inputs:
-              containerRegistry: "SharedKernel-Container-DockerHub"
-              repository: "${{ parameters.imageName }}"
-              command: "build"
-              Dockerfile: "${{ parameters.DockerFilePath }}/Dockerfile"
-              tags: "${{ parameters.imageVersion }}"
-              arguments: "${{ parameters.imageArguments }}"
-
-          - task: Docker@2
-            displayName: "Docker Push"
-            enabled: true
-            inputs:
-              containerRegistry: "SharedKernel-Container-DockerHub"
-              repository: "${{ parameters.imageName }}"
-              command: "push"
-              tags: "${{ parameters.imageVersion }}"
