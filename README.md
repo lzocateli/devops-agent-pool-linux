@@ -5,9 +5,9 @@
 - [`agent` (*Dockerfile*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/base-image/agent)
 - [`base-image` (*Dockerfile*)](https://github.com/lzocateli00/devops-agent-pool-linux/tree/main/base-image/linux)
 
-[![Downloads from Docker Hub](https://img.shields.io/docker/pulls/nuuvedevops/devops-agent-pool-linux.svg)](https://hub.docker.com/r/nuuvedevops/azdo-agents)
-[![Stars on Docker Hub](https://img.shields.io/docker/stars/nuuvedevops/devops-agent-pool-linux.svg)](https://hub.docker.com/r/nuuvedevops/azdo-agents) 
-
+| Click to DockerHub | Version |
+| :---:   | :---:     |
+| [![Docker Pulls](https://img.shields.io/docker/pulls/nuuvedevops/azdo-agents)](https://hub.docker.com/r/nuuvedevops/azdo-agents) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/nuuvedevops/azdo-agents?sort=semver)](https://hub.docker.com/r/nuuvedevops/azdo-agents) |
 
 ## Configuration
 
