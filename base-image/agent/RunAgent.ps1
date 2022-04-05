@@ -9,9 +9,10 @@ param(
 
 Write-Host "Starting: $($MyInvocation.MyCommand.Definition)"
 
-Set-Item -Path Env:AZP_TOKEN -Value ""; 
 [Environment]::SetEnvironmentVariable("AZP_TOKEN", '', 'Machine')
 [Environment]::SetEnvironmentVariable("AZP_TOKEN", '', 'User')
+[Environment]::SetEnvironmentVariable("AZP_AGENT_NAME", '', 'Machine')
+[Environment]::SetEnvironmentVariable("AZP_AGENT_NAME", '', 'User')
 
 Set-Location $pathAgent
     
