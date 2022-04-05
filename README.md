@@ -46,7 +46,7 @@ docker run --name devops-agent01 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/azagent-01:/agent/_work `
+    -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
     nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0 
 ````
 
@@ -65,7 +65,7 @@ docker run --name devops-agent01 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/azagent-01:/agent/_work `
+    -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
     nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````
 
@@ -78,6 +78,11 @@ If you do not want to use a volume on the host, just remove the -v line from doc
 - Path to the left of : is the host path
 - Path to the right of : is the path inside the container   
 
+**Podman volumes:**
+- Use `:z` in the volume mount instruction, or `--security-opt label=disable` if using a SELinux system, Example:
+```pwsh
+podman run --security-opt label=disable -v .....
+```
 
 ## Attention, if you use proxy
 * If you are using a proxy, and you have domains in "NO_PROXY", you will need to do this step by step:
