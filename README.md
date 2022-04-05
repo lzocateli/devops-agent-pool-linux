@@ -87,5 +87,5 @@ If you do not want to use a volume on the host, just remove the -v line from doc
 
 ## Maintainers
 
-* [email: Lincoln Zocateli](mailto:lzocateli00@outlook.com), [facebook: Lincoln Zocateli](https://www.facebook.com/lzocateli00), [twitter: @lzocateli00](https://twitter.com/lzocateli00)
+* `Lincoln Zocateli`: e-mail: [lzocateli00@outlook.com](mailto:lzocateli00@outlook.com), facebook: [lzocateli00](https://www.facebook.com/lzocateli00), twitter: [lzocateli00](https://twitter.com/lzocateli00)
 
