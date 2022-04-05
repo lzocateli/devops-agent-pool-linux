@@ -26,7 +26,6 @@ RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
 ARG Env_HttpProxy
 ARG Env_NoProxy
 
-ENV HTTPS_PROXY=$Env_HttpProxy
 ENV HTTP_PROXY=$Env_HttpProxy
 ENV NO_PROXY=$Env_NoProxy
 
