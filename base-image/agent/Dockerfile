@@ -37,7 +37,6 @@ WORKDIR /agent
 COPY ./*.ps1 ./
 COPY . ./
 RUN chmod +x *.ps1 *.sh
-RUN mkdir _work
 
 RUN ls -la
 
