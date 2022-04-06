@@ -18,4 +18,4 @@ RUN pwsh \
       \$ErrorActionPreference = 'Stop' ; \
       \$ProgressPreference = 'SilentlyContinue' ; \
       Function lsla {Get-ChildItem -Force} ; \
-      Set-Alias -Name "ls -la" -Value lsla"
+      Set-Alias -Name "ls" -Value lsla -Force -Option AllScope"
