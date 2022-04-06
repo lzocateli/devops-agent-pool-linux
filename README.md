@@ -7,7 +7,7 @@
 
 | Click to DockerHub | Version |
 | :---:   | :---:     |
-| [![Docker Pulls](https://img.shields.io/docker/pulls/nuuvedevops/azdo-agents)](https://hub.docker.com/r/nuuvedevops/azdo-agents) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/nuuvedevops/azdo-agents?sort=semver)](https://hub.docker.com/r/nuuvedevops/azdo-agents) |
+| [![Docker Pulls](https://img.shields.io/docker/pulls/nuuvers/azdo-agents)](https://hub.docker.com/r/nuuvers/azdo-agents) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/nuuvers/azdo-agents?sort=semver)](https://hub.docker.com/r/nuuvers/azdo-agents) |
 
 ## Configuration
 
