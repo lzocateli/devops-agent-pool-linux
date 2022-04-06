@@ -10,8 +10,7 @@ RUN pwsh \
       Install-Module -Name Subnet -RequiredVersion 1.0.14 -Force ; \
       Start-Sleep -Seconds 10 ; \
       Import-Module -Name Az -Global; \
-      Import-Module -Name Subnet -Global; \
-      Start-Sleep -Seconds 6"
+      Import-Module -Name Subnet -Global"
  
 RUN pwsh \
     -NoLogo \
