@@ -32,22 +32,40 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_WORK)) {
 }
 
 
+$PAT = $env:AZP_TOKEN
+$env:AZP_TOKEN = ""
+
+$URL = $env:AZP_URL
+$env:AZP_URL = ""
+
+$POOL = $env:AZP_POOL
+$env:AZP_POOL = ""
+
+$AGENT = $env:AZP_AGENT_NAME
+$env:AZP_AGENT_NAME = ""
+
+$WORK = $env:AZP_WORK
+$env:AZP_WORK = ""
+
+$PROXY = $env:HTTP_PROXY 
+$env:HTTP_PROXY = ""
+    
+
 $pathAgentCredential = "$pathAgent/.credentials" 
 if (-not (Test-Path $pathAgentCredential)) {
 
     $ActualPath = $PWD
-    $PAT = $env:AZP_TOKEN
-    $env:AZP_TOKEN = ""
-
+   
     Set-Location $pathAgent
  
     Write-Host "Executing config.sh CONFIGURE in $PWD ... " -ForegroundColor Cyan
-    Write-Host "url: $env:AZP_URL " -ForegroundColor Cyan
-    Write-Host "pool: $env:AZP_POOL " -ForegroundColor Cyan
+    Write-Host "url: $URL " -ForegroundColor Cyan
+    Write-Host "pool: $POOL " -ForegroundColor Cyan
     Write-Host "token: $PAT " -ForegroundColor Cyan
-    Write-Host "agent: $env:AZP_AGENT_NAME " -ForegroundColor Cyan
-    Write-Host "work: $env:AZP_WORK " -ForegroundColor Cyan
-    Write-Host "proxy: $env:HTTP_PROXY " -ForegroundColor Cyan
+    Write-Host "agent: $AGENT " -ForegroundColor Cyan
+    Write-Host "work: $WORK " -ForegroundColor Cyan
+    Write-Host "proxy: $PROXY " -ForegroundColor Cyan
+  
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
 
@@ -59,12 +77,12 @@ if (-not (Test-Path $pathAgentCredential)) {
         Write-Host "Configuring without proxy in $PWD ..." -ForegroundColor Cyan
 
         ./config.sh --unattended `
-            --url $env:AZP_URL `
-            --pool $env:AZP_POOL `
+            --url $URL `
+            --pool $POOL `
             --auth PAT `
             --token $PAT `
-            --agent $env:AZP_AGENT_NAME `
-            --work $env:AZP_WORK `
+            --agent $AGENT `
+            --work $WORK `
             --replace `
             --acceptTeeEula 
             
@@ -76,26 +94,26 @@ if (-not (Test-Path $pathAgentCredential)) {
         if ([string]::IsNullOrWhiteSpace($env:PROXY_USER)) {
             
             ./config.sh --unattended `
-                --url $env:AZP_URL `
-                --pool $env:AZP_POOL `
+                --url $URL `
+                --pool $POOL `
                 --auth PAT `
                 --token $PAT `
-                --agent $env:AZP_AGENT_NAME `
-                --work $env:AZP_WORK `
-                --proxyurl $env:HTTP_PROXY `
+                --agent $AGENT `
+                --work $WORK `
+                --proxyurl $PROXY `
                 --replace `
                 --acceptTeeEula 
         }
         else {
             
             ./config.sh --unattended `
-                --url $env:AZP_URL `
-                --pool $env:AZP_POOL `
+                --url $URL `
+                --pool $POOL `
                 --auth PAT `
                 --token $PAT `
-                --agent $env:AZP_AGENT_NAME `
-                --work $env:AZP_WORK `
-                --proxyurl $env:HTTP_PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
+                --agent $AGENT `
+                --work $WORK `
+                --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
                 --replace `
                 --acceptTeeEula 
         }
