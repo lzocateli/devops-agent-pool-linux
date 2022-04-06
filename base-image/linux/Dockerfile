@@ -1,8 +1,9 @@
 FROM mcr.microsoft.com/powershell:ubuntu-20.04
 
+## -NoProfile \
+    
 RUN pwsh \
     -NoLogo \
-    -NoProfile \
     -Command " \
       \$ErrorActionPreference = 'Stop' ; \
       \$ProgressPreference = 'SilentlyContinue' ; \
