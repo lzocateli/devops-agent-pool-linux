@@ -53,6 +53,7 @@ $env:AZP_WORK = ""
 $PROXY = $env:HTTP_PROXY 
 $env:HTTP_PROXY = ""
 $env:HTTPS_PROXY = ""
+$env:https_proxy = ""
 
 
 $pathAgentCredential = "$pathAgent/.credentials" 
@@ -75,6 +76,7 @@ if (-not (Test-Path $pathAgentCredential)) {
 
     ./env.sh
 
+    gci env:
 
     if ([string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
 
