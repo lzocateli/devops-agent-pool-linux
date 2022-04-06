@@ -1,4 +1,4 @@
-FROM nuuvedevops/azdo-agents:linux-x64-1.0.0
+FROM nuuvers/azdo-agents:linux-x64-1.0.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
