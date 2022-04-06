@@ -27,7 +27,7 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_AGENT_NAME)) {
     $env:AZP_AGENT_NAME = $env:COMPUTERNAME
 }
 else {
-    $env:AZP_AGENT_NAME = "$($env:AZP_AGENT_NAME):$($env:COMPUTERNAME)"
+    $env:AZP_AGENT_NAME = "$($env:AZP_AGENT_NAME):$($env:HOSTNAME)"
 }
 
 if ([string]::IsNullOrWhiteSpace($env:AZP_WORK)) {
@@ -52,7 +52,8 @@ $env:AZP_WORK = ""
 
 $PROXY = $env:HTTP_PROXY 
 $env:HTTP_PROXY = ""
-    
+$env:HTTPS_PROXY = ""
+
 
 $pathAgentCredential = "$pathAgent/.credentials" 
 if (-not (Test-Path $pathAgentCredential)) {
