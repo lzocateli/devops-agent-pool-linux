@@ -47,7 +47,7 @@ docker run --name devops-agent01 `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
     -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
-    nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0 
+    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0 
 ````
 
 To start a container in foreground mode:
@@ -66,7 +66,7 @@ docker run --name devops-agent01 `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
     -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
-    nuuvedevops/devops-agent-pool-linux:linux-x64-agent-1.0.0  
+    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````
 
 The -v parameter indicates that a volume is being mounted on the container host, 
