@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/powershell:ubuntu-20.04
+##FROM mcr.microsoft.com/powershell:ubuntu-20.04
+FROM mcr.microsoft.com/azure-powershell:7.4.0-ubuntu-20.04
 
 ## -NoProfile \
     
@@ -7,10 +8,7 @@ RUN pwsh \
     -Command " \
       \$ErrorActionPreference = 'Stop' ; \
       \$ProgressPreference = 'SilentlyContinue' ; \
-      Install-Module -Name Az -RequiredVersion 7.3.2 -Force ; \
       Install-Module -Name Subnet -RequiredVersion 1.0.14 -Force ; \
-      Start-Sleep -Seconds 10 ; \
-      Import-Module -Name Az -Global; \
       Import-Module -Name Subnet -Global"
  
 RUN pwsh \
