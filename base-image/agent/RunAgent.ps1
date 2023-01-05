@@ -13,4 +13,4 @@ Set-Location $pathAgent
     
 Write-Host "Executing run-docker.sh in $PWD ..."
 
-./run-docker.sh "$@" & wait $!
+./run-docker.sh $pathAgent
