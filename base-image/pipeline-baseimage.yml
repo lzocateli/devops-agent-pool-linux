@@ -36,6 +36,12 @@ parameters:
 
 trigger: none
 
+pr:
+  branches:
+    include:
+      - refs/heads/main
+
+
 
 resources:
   repositories:
