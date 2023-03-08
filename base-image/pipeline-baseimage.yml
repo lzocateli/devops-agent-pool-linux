@@ -44,7 +44,7 @@ resources:
     endpoint: SharedProjects-Repos
   
 
-#stages: 
+stages: 
 
 - template: pipelines/create-image.yml@templates1
   parameters:
