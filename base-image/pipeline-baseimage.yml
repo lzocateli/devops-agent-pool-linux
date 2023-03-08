@@ -8,7 +8,7 @@ parameters:
   type: string
   default: ""
 - name: DockerFilePath
-  displayName: "Dockerfile path, example: base-image/linux"
+  displayName: "Dockerfile path, example: devops-agent-pool-linux/base-image/linux"
   type: string
   default: ""
 - name: imageArguments
