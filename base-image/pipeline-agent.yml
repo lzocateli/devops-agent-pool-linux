@@ -37,7 +37,7 @@ resources:
   pipelines:
   - pipeline: CI-Github-devops-agent-linux
     source: CI-Github-devops-agent-linux-base-image
-    #project: FabrikamProject
+    project: Nuuvify
     trigger:
       branches:
         include:
