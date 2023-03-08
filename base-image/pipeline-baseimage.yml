@@ -47,5 +47,4 @@ stages:
     DockerFilePath: ${{ parameters.DockerFilePath }}
     imageArguments: ${{ parameters.imageArguments }}
     proxyBypassConfig: ${{ parameters.proxyBypassConfig }}
-    executeInstallAgent: ${{ parameters.executeInstallAgent }}
-    agentTargetArch: ${{ parameters.agentTargetArch }}
+    executeInstallAgent: false
