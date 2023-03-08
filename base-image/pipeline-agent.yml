@@ -1,6 +1,6 @@
 parameters:
 - name: imageName
-  displayName: "Name the image to be created, example: lzocateli/az-powershell-7.2-ubuntu-20.04"
+  displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
   type: string
   default: ""
 - name: imageVersion
@@ -8,7 +8,7 @@ parameters:
   type: string
   default: ""
 - name: DockerFilePath
-  displayName: "Dockerfile path, example: base-image/linux"
+  displayName: "Dockerfile path, example: base-image/agent"
   type: string
   default: ""
 - name: imageArguments
@@ -19,18 +19,34 @@ parameters:
   displayName: "Array bypass example: yourdns\\.com, github\\.com"
   type: string
   default: " "
-
+- name: agentTargetArch
+  displayName: "Target arch agent"
+  type: string
+  default: linux-x64
+  values:
+    - linux-x64
+    - linux-arm64
+    - linux-arm
+    - rhel.6-x64
 
 
 trigger: none
 
-pr:
-  branches:
-    include:
-      - refs/heads/main
+# pr:
+#   branches:
+#     include:
+#     - refs/*
 
 
 resources:
+  pipelines:
+  - pipeline: CI-Github-devops-agent-linux
+    source: CI-Github-devops-agent-linux-base-image
+    #project: FabrikamProject
+    trigger:
+      branches:
+        include:
+        - refs/heads/main
   repositories:
   - repository: templates
     type: git
@@ -47,4 +63,5 @@ stages:
     DockerFilePath: ${{ parameters.DockerFilePath }}
     imageArguments: ${{ parameters.imageArguments }}
     proxyBypassConfig: ${{ parameters.proxyBypassConfig }}
-    executeInstallAgent: false
+    executeInstallAgent: true
+    agentTargetArch: ${{ parameters.agentTargetArch }}
