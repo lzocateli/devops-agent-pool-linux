@@ -50,7 +50,6 @@ WORKDIR /agent
 COPY ./*.ps1 ./
 COPY . ./
 RUN chmod +x *.ps1 *.sh \
-    && ls -la \
-    && env
+    && ln -s $PS_INSTALL_FOLDER/pwsh /bin/pwsh
 
 CMD ["./ConfigureOrRun.ps1", "/agent"]
