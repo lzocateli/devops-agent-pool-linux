@@ -35,8 +35,8 @@ trigger: none
 
 resources:
   pipelines:
-  - pipeline: CI-Github-devops-agent-linux-base-image
-    source: CI-Github-devops-agent-linux
+  - pipeline: CI-Github-devops-agent-linux
+    source: CI-Github-devops-agent-linux-base-image
     #project: FabrikamProject
     trigger:
       branches:
