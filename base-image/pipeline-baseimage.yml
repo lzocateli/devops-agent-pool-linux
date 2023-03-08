@@ -7,7 +7,7 @@ resources:
 
 parameters:
   - name: imageName
-    displayName: "Name the image to be created, example: nuuvers/azdo-agents"
+    displayName: "Name the image to be created, example: lzocateli/azdo-agents"
     type: string
     default: ""
   - name: imageVersion
