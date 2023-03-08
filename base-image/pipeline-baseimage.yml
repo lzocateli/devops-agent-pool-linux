@@ -22,12 +22,12 @@ parameters:
 
 
 
-trigger: none
-
-pr:
+trigger:
   branches:
     include:
-      - refs/heads/main
+      - main
+
+pr: none
 
 
 resources:
