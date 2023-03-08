@@ -5,7 +5,7 @@ RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
 RUN apt update -y \
     && apt upgrade -y \
-    && apt install -y --no-install-recommends \
+    && apt install -y \
     ca-certificates \
     curl \
     jq \
