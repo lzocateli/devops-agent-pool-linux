@@ -46,7 +46,7 @@ resources:
     trigger:
       branches:
         include:
-        - refs/heads/main
+        - main
   repositories:
   - repository: templates
     type: git
