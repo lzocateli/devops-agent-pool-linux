@@ -1,4 +1,4 @@
-FROM lzocateli/devops-agent-pool-linux-x64:1.1.0
+FROM lzocateli/az-powershell-9.4.0-ubuntu-20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
