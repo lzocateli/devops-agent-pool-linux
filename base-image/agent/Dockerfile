@@ -14,7 +14,6 @@ RUN apt update -y \
     libcurl4 \
     libunwind8 \
     netcat \
-    libssl1.0 \
     zip \
     unzip \
     apt-utils \

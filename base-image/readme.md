@@ -6,7 +6,7 @@ Basta executar Pull Request no repositorio do Github para gerar nova imagem
 
 Nome da Imagem:
 ```
-az-powershell-7.2-ubuntu-20.04
+lzocateli/az-powershell-7.2-ubuntu-20.04
 ```
 
 Tag version:
@@ -16,7 +16,7 @@ Tag version:
 
 Local para o dockerfile:
 ```
-containers/azdo-base-image/linux
+devops-agent-pool-linux/base-image/linux
 ```
 
 Imagem argumentos:
@@ -24,7 +24,7 @@ Imagem argumentos:
 --build-arg Env_HttpProxy=proxy.xyz.com:80 --build-arg Env_NoProxy=xyz.com
 ```
 
-Baypass proxy:
+Baypass proxy: (Se não possuir proxy, inclua dois espaços a esquerda desse campo)
 ```
 xyz\.com
 ```
@@ -34,7 +34,7 @@ xyz\.com
 
 Nome da Imagem:
 ```
-devops-agent-pool-linux-x64
+lzocateli/devops-agent-pool-linux-x64
 ```
 
 Tag version:
@@ -44,15 +44,14 @@ Tag version:
 
 Local para o dockerfile:
 ```
-containers/azdo-base-image/agent
+devops-agent-pool-linux/base-image/agent
 ```
 
 Imagem argumentos:
 ```
 --build-arg Env_HttpProxy=proxy.xyz.com:80 --build-arg Env_NoProxy=xyz.com
 ```
-
-Baypass proxy:
+Baypass proxy: (Se não possuir proxy, inclua dois espaços a esquerda desse campo)
 ```
 xyz\.com
 ```
