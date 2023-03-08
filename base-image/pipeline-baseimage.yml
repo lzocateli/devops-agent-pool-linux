@@ -27,7 +27,7 @@ trigger: none
 pr:
   branches:
     include:
-    - refs/*
+    - refs/main
 
 
 resources:
