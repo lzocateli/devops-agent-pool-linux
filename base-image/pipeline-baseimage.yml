@@ -47,7 +47,7 @@ resources:
 
 stages: 
 
-- template: pipelines/create-image.yml@templates
+- template: pipelines/create-image-steps.yml@templates
   parameters:
     imageName: ${{ parameters.imageName }}
     imageVersion: ${{ parameters.imageVersion }}
