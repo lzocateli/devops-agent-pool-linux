@@ -1,37 +1,37 @@
 parameters:
-  - name: imageName
-    displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
-    type: string
-    default: ""
-  - name: imageVersion
-    displayName: "Tag version for the image, example: 1.0.0"
-    type: string
-    default: ""
-  - name: DockerFilePath
-    displayName: "Dockerfile path, example: base-image/linux"
-    type: string
-    default: ""
-  - name: imageArguments
-    displayName: "Image arguments, example: --build-arg Env_HttpProxy=proxy.mydomain.com:80"
-    type: string
-    default: " "
-  - name: proxyBypassConfig
-    displayName: "Array bypass example: yourdns\\.com, github\\.com"
-    type: string
-    default: " "
-  - name: executeInstallAgent
-    displayName: "Execute script to Install Agent ?"
-    type: boolean
-    default: false
-  - name: agentTargetArch
-    displayName: "Target arch agent"
-    type: string
-    default: linux-x64
-    values:
-      - linux-x64
-      - linux-arm64
-      - linux-arm
-      - rhel.6-x64
+- name: imageName
+  displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
+  type: string
+  default: ""
+- name: imageVersion
+  displayName: "Tag version for the image, example: 1.0.0"
+  type: string
+  default: ""
+- name: DockerFilePath
+  displayName: "Dockerfile path, example: base-image/linux"
+  type: string
+  default: ""
+- name: imageArguments
+  displayName: "Image arguments, example: --build-arg Env_HttpProxy=proxy.mydomain.com:80"
+  type: string
+  default: " "
+- name: proxyBypassConfig
+  displayName: "Array bypass example: yourdns\\.com, github\\.com"
+  type: string
+  default: " "
+- name: executeInstallAgent
+  displayName: "Execute script to Install Agent ?"
+  type: boolean
+  default: false
+- name: agentTargetArch
+  displayName: "Target arch agent"
+  type: string
+  default: linux-x64
+  values:
+    - linux-x64
+    - linux-arm64
+    - linux-arm
+    - rhel.6-x64
 
 trigger: none
 
