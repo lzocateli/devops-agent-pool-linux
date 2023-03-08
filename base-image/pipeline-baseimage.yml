@@ -14,11 +14,11 @@ parameters:
 - name: imageArguments
   displayName: "Image arguments, example: --build-arg Env_HttpProxy=proxy.mydomain.com:80"
   type: string
-  default: " "
+  default: "--build-arg Env_HttpProxy="
 - name: proxyBypassConfig
   displayName: "Array bypass example: yourdns\\.com, github\\.com"
   type: string
-  default: " "
+  default: "  yourdns\\.com"
 
 
 # Pipeline deve ser diparado manualmente pelo DevOps
