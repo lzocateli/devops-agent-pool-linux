@@ -49,6 +49,11 @@ resources:
     endpoint: SharedProjects-Repos
   
 
+
+variables:
+- template: variables/global.yml@templates
+
+
 stages: 
 
 - template: pipeline-templates/create-image-steps.yml@templates
