@@ -1,4 +1,4 @@
-FROM nuuvers/azdo-agents:linux-x64-1.0.0
+FROM lzocateli/devops-agent-pool-linux-x64:1.1.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
