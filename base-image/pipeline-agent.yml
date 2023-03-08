@@ -30,6 +30,10 @@ parameters:
     - rhel.6-x64
 
 
+# Pipeline deve ser diparado manualmente pelo DevOps, depois do pipeline `pipeline-baseimage.yml`
+# informando os dados para criação da imagem do agent
+# https://dev.azure.com/nuuvers/Nuuvify/_build
+
 trigger: none
 
 
@@ -38,10 +42,10 @@ resources:
   - pipeline: CI-Github-devops-agent-linux
     source: CI-Github-devops-agent-linux-base-image
     project: Nuuvify
-    trigger:
-      branches:
-        include:
-        - main
+    trigger: none
+#      branches:
+#        include:
+#        - main
   repositories:
   - repository: templates
     type: git
