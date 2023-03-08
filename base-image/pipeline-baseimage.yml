@@ -1,6 +1,6 @@
 parameters:
 - name: imageName
-  displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
+  displayName: "Name the image to be created, example: lzocateli/az-powershell-7.2-ubuntu-20.04"
   type: string
   default: ""
 - name: imageVersion
@@ -19,19 +19,7 @@ parameters:
   displayName: "Array bypass example: yourdns\\.com, github\\.com"
   type: string
   default: " "
-- name: executeInstallAgent
-  displayName: "Execute script to Install Agent ?"
-  type: boolean
-  default: false
-- name: agentTargetArch
-  displayName: "Target arch agent"
-  type: string
-  default: linux-x64
-  values:
-    - linux-x64
-    - linux-arm64
-    - linux-arm
-    - rhel.6-x64
+
 
 
 trigger: none
