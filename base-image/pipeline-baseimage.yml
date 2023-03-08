@@ -36,18 +36,23 @@ parameters:
 
 trigger: none
 
+pr:
+  branches:
+    include:
+    - refs/*
+
 
 resources:
   repositories:
   - repository: templates
     type: git
-    name: SharedKernel/containers
+    name: SharedKernel/pipelines-store
     endpoint: SharedProjects-Repos
   
 
 stages: 
 
-- template: pipelines/create-image-steps.yml@templates
+- template: pipeline-templates/create-image-steps.yml@templates
   parameters:
     imageName: ${{ parameters.imageName }}
     imageVersion: ${{ parameters.imageVersion }}
