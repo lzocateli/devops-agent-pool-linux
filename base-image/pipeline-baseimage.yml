@@ -38,7 +38,7 @@ trigger: none
 
 resources:
   repositories:
-  - repository: templates1
+  - repository: templates
     type: git
     name: SharedKernel/containers
     endpoint: SharedProjects-Repos
@@ -46,7 +46,7 @@ resources:
 
 stages: 
 
-- template: pipelines/create-image.yml@templates1
+- template: pipelines/create-image.yml@templates
   parameters:
     imageName: ${{ parameters.imageName }}
     imageVersion: ${{ parameters.imageVersion }}
