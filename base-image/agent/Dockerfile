@@ -49,8 +49,8 @@ WORKDIR /agent
 
 COPY ./*.ps1 ./
 COPY . ./
-RUN chmod +x *.ps1 *.sh
-
-RUN ls -la
+RUN chmod +x *.ps1 *.sh \
+    && ls -la \
+    && env
 
 CMD ["./ConfigureOrRun.ps1", "/agent"]
