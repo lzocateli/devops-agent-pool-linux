@@ -21,11 +21,11 @@ parameters:
   default: " "
 
 
+# Pipeline deve ser diparado manualmente pelo DevOps
+# informando os dados para criação da imagem
+# https://dev.azure.com/nuuvers/Nuuvify/_build
 
-trigger:
-  branches:
-    include:
-      - main
+trigger: none
 
 pr: none
 
