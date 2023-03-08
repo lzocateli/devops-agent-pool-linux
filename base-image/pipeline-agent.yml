@@ -32,11 +32,6 @@ parameters:
 
 trigger: none
 
-# pr:
-#   branches:
-#     include:
-#     - refs/*
-
 
 resources:
   pipelines:
@@ -46,13 +41,18 @@ resources:
     trigger:
       branches:
         include:
-        - refs/heads/main
+        - main
   repositories:
   - repository: templates
     type: git
     name: SharedKernel/pipelines-store
     endpoint: SharedProjects-Repos
   
+
+
+variables:
+- template: variables/global.yml@templates
+
 
 stages: 
 
