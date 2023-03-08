@@ -32,10 +32,10 @@ parameters:
 
 trigger: none
 
-pr:
-  branches:
-    include:
-    - refs/*
+# pr:
+#   branches:
+#     include:
+#     - refs/*
 
 
 resources:
@@ -43,9 +43,10 @@ resources:
   - pipeline: CI-Github-devops-agent-linux
     source: CI-Github-devops-agent-linux-base-image
     #project: FabrikamProject
-    trigger: true 
-
-resources:
+    trigger:
+      branches:
+        include:
+        - refs/heads/main
   repositories:
   - repository: templates
     type: git
