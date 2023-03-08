@@ -7,11 +7,11 @@ resources:
 
 parameters:
   - name: imageName
-    displayName: "Name the image to be created, example: lzocateli/azdo-agents"
+    displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
     type: string
     default: ""
   - name: imageVersion
-    displayName: "Tag version for the image, example: linux-x64-1.0.0"
+    displayName: "Tag version for the image, example: 1.0.0"
     type: string
     default: ""
   - name: DockerFilePath
