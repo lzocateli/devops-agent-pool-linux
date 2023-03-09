@@ -51,4 +51,4 @@ COPY ./*.ps1 ./
 COPY . ./
 RUN chmod +x *.ps1 *.sh
 
-CMD ["/bin/pwsh ./ConfigureOrRun.ps1", "/agent"]
+CMD ["pwsh","./ConfigureOrRun.ps1", "/agent"]
