@@ -56,6 +56,9 @@ docker run --name devops-$AZ_AGENT_WORK_PATH `
 To start a container in foreground mode:
 
 ````pwsh
+export AZ_AGENT_WORK_PATH=agent-01
+export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
+
 docker run --name devops-$AZ_AGENT_WORK_PATH `
     -ti `
     --rm `
