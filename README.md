@@ -35,37 +35,40 @@ On a Mac, use Docker for Mac, or directy on Linux, run in bash:
 To start a container in detached mode:
 
 ````pwsh
-docker run --name devops-agent01 `
+export AZ_AGENT_WORK_PATH=agent-01
+export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
+
+docker run --name devops-$AZ_AGENT_WORK_PATH `
     -d `
     -e AZP_URL=https://dev.azure.com/your_subscription `
     -e AZP_TOKEN=your PAT `
     -e AZP_POOL=your agent pool name `
-    -e AZP_AGENT_NAME=your agent name `
+    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
     -e AZP_WORK=/agent/_work `
     -e HTTP_PROXY=http://proxy.domain.com:80 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
     nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0 
 ````
 
 To start a container in foreground mode:
 
 ````pwsh
-docker run --name devops-agent01 `
+docker run --name devops-$AZ_AGENT_WORK_PATH `
     -ti `
     --rm `
     -e AZP_URL=https://dev.azure.com/your_subscription `
     -e AZP_TOKEN=your PAT `
     -e AZP_POOL=your agent pool name `
-    -e AZP_AGENT_NAME=your agent name `
+    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
     -e AZP_WORK=/agent/_work `
     -e HTTP_PROXY=http://proxy.domain.com:80 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/azagent-01:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
     nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````
 
