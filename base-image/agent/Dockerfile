@@ -25,17 +25,6 @@ RUN apt update -y \
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
     && rm -rf /var/lib/apt/lists/*
 
-# RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-# RUN echo \
-#  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-#  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# RUN apt-get update && apt-get install -y \
-#    docker-ce \
-#    docker-ce-cli \
-#    containerd.io
-
 ARG Env_HttpProxy
 ARG Env_NoProxy
 
@@ -46,6 +35,14 @@ ENV NO_PROXY=$Env_NoProxy
 ENV TARGETARCH=linux-x64 
 
 WORKDIR /agent
+
+# Desmarque isso caso for criar essa imagem dentro da sua infra
+# Uncheck this if you are going to create this image within your infrastructure
+#
+# RUN git clone -b main https://github.com/lzocateli/devops-agent-pool-linux.git \
+#     && mv ./devops-agent-pool-linux/base-image/agent/*.* . \
+#     && rm -rf .git devops-agent-pool-linux
+
 
 COPY ./*.ps1 ./
 COPY . ./
