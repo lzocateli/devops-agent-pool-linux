@@ -20,7 +20,8 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_TOKEN)) {
 }
 
 
-if ([string]::IsNullOrWhiteSpace($env:AZP_POOL)) {
+if ([string]::IsNullOrWhiteSpace($env:AZP_POOL) -and 
+    [string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
     $env:AZP_POOL = 'Default'
 }
 
@@ -97,20 +98,19 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --agent $AGENT `
                 --work $WORK `
                 --replace `
-                --acceptTeeEula 
+                --acceptteeeula 
         }
         else {
             ./config.sh --unattended `
             --deploymentpool `
             --deploymentpoolname $DEPLOYMENT_POOL_NAME `
             --url $URL `
-            --pool $POOL `
             --auth PAT `
             --token $PAT `
             --agent $AGENT `
             --work $WORK `
             --replace `
-            --acceptTeeEula 
+            --acceptteeeula 
         }
             
     }
@@ -131,20 +131,19 @@ if (-not (Test-Path $pathAgentCredential)) {
                     --work $WORK `
                     --proxyurl $PROXY `
                     --replace `
-                    --acceptTeeEula
+                    --acceptteeeula
             }
             else {
                 ./config.sh --unattended `
                 --deploymentpool `
                 --deploymentpoolname $DEPLOYMENT_POOL_NAME `
                 --url $URL `
-                --pool $POOL `
                 --auth PAT `
                 --token $PAT `
                 --agent $AGENT `
                 --work $WORK `
                 --replace `
-                --acceptTeeEula 
+                --acceptteeeula 
             }
         }
         else {
@@ -160,21 +159,20 @@ if (-not (Test-Path $pathAgentCredential)) {
                     --work $WORK `
                     --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
                     --replace `
-                    --acceptTeeEula 
+                    --acceptteeeula 
             }
             else {
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
                     --url $URL `
-                    --pool $POOL `
                     --auth PAT `
                     --token $PAT `
                     --agent $AGENT `
                     --work $WORK `
                     --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
                     --replace `
-                    --acceptTeeEula 
+                    --acceptteeeula 
             }
         }
 
