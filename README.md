@@ -76,6 +76,29 @@ docker run --name devops-$AZ_AGENT_WORK_PATH `
     nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
 ````
 
+To run a container with a `deployment pool` agent
+
+````pwsh
+export AZ_AGENT_WORK_PATH=agent-01
+export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
+
+docker run --name devops-$AZ_AGENT_WORK_PATH `
+    -d `
+    -e AZP_DEPLOYMENT_POOL_NAME=your deploymento pool name `
+    -e AZP_URL=https://dev.azure.com/your_subscription `
+    -e AZP_TOKEN=your PAT `
+    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
+    -e AZP_WORK=/agent/_work `
+    -e HTTP_PROXY=http://proxy.domain.com:80 `
+    -e NO_PROXY=domain.com `
+    -e PROXY_USER=myuser `
+    -e PROXY_PASSWORD=XYZ `
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
+    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
+````
+
+
+
 The -v parameter indicates that a volume is being mounted on the container host, 
 so it will be possible to keep the _work folder even if the container is not running.
 
