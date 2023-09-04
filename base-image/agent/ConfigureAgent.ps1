@@ -19,6 +19,7 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_TOKEN)) {
     Exit 1
 }
 
+
 if ([string]::IsNullOrWhiteSpace($env:AZP_POOL)) {
     $env:AZP_POOL = 'Default'
 }
@@ -50,6 +51,10 @@ $env:AZP_AGENT_NAME = ""
 $WORK = $env:AZP_WORK
 $env:AZP_WORK = ""
 
+$DEPLOYMENT_POOL_NAME = $env:AZP_DEPLOYMENT_POOL_NAME
+$env:AZP_DEPLOYMENT_POOL_NAME = ""
+
+
 $PROXY = $env:HTTP_PROXY 
 $env:HTTPS_PROXY = ""
 $env:https_proxy = ""
@@ -70,19 +75,34 @@ if (-not (Test-Path $pathAgentCredential)) {
     Write-Host "agent: $AGENT " -ForegroundColor Cyan
     Write-Host "work: $WORK " -ForegroundColor Cyan
     Write-Host "proxy: $PROXY " -ForegroundColor Cyan
+    Write-Host "deployment pool name: $DEPLOYMENT_POOL_NAME " -ForegroundColor Cyan
   
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
 
     ./env.sh
 
-    gci env:
+    Get-ChildItem env:
 
     if ([string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
 
         Write-Host "Configuring without proxy in $PWD ..." -ForegroundColor Cyan
 
-        ./config.sh --unattended `
+        if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+            ./config.sh --unattended `
+                --url $URL `
+                --pool $POOL `
+                --auth PAT `
+                --token $PAT `
+                --agent $AGENT `
+                --work $WORK `
+                --replace `
+                --acceptTeeEula 
+        }
+        else {
+            ./config.sh --unattended `
+            --deploymentpool `
+            --deploymentpoolname $DEPLOYMENT_POOL_NAME `
             --url $URL `
             --pool $POOL `
             --auth PAT `
@@ -91,6 +111,7 @@ if (-not (Test-Path $pathAgentCredential)) {
             --work $WORK `
             --replace `
             --acceptTeeEula 
+        }
             
     }
     else {
@@ -99,29 +120,62 @@ if (-not (Test-Path $pathAgentCredential)) {
 
         if ([string]::IsNullOrWhiteSpace($env:PROXY_USER)) {
             
-            ./config.sh --unattended `
+
+            if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+                ./config.sh --unattended `
+                    --url $URL `
+                    --pool $POOL `
+                    --auth PAT `
+                    --token $PAT `
+                    --agent $AGENT `
+                    --work $WORK `
+                    --proxyurl $PROXY `
+                    --replace `
+                    --acceptTeeEula
+            }
+            else {
+                ./config.sh --unattended `
+                --deploymentpool `
+                --deploymentpoolname $DEPLOYMENT_POOL_NAME `
                 --url $URL `
                 --pool $POOL `
                 --auth PAT `
                 --token $PAT `
                 --agent $AGENT `
                 --work $WORK `
-                --proxyurl $PROXY `
                 --replace `
                 --acceptTeeEula 
+            }
         }
         else {
             
-            ./config.sh --unattended `
-                --url $URL `
-                --pool $POOL `
-                --auth PAT `
-                --token $PAT `
-                --agent $AGENT `
-                --work $WORK `
-                --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
-                --replace `
-                --acceptTeeEula 
+
+            if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+                ./config.sh --unattended `
+                    --url $URL `
+                    --pool $POOL `
+                    --auth PAT `
+                    --token $PAT `
+                    --agent $AGENT `
+                    --work $WORK `
+                    --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
+                    --replace `
+                    --acceptTeeEula 
+            }
+            else {
+                ./config.sh --unattended `
+                    --deploymentpool `
+                    --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                    --url $URL `
+                    --pool $POOL `
+                    --auth PAT `
+                    --token $PAT `
+                    --agent $AGENT `
+                    --work $WORK `
+                    --proxyurl $PROXY --proxyusername $env:PROXY_USER --proxypassword $env:PROXY_PASSWORD `
+                    --replace `
+                    --acceptTeeEula 
+            }
         }
 
     }

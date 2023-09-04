@@ -26,6 +26,7 @@ Optionals environment variables:
 (see **"Attention, if you use proxy"**)
 * `PROXY_USER` - If necessary, inform the username for proxy authentication
 * `PROXY_PASSWORD` - If necessary, inform the password for proxy authentication
+* `AZP_DEPLOYMENT_POOL_NAME` - If informed, a Deployment Pool type agent will be created
 
 
 ## Running
