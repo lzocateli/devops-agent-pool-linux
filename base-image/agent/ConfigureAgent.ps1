@@ -20,10 +20,14 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_TOKEN)) {
 }
 
 
-if ([string]::IsNullOrWhiteSpace($env:AZP_POOL) -and 
-    [string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
-    $env:AZP_POOL = 'Default'
-}
+if ([string]::IsNullOrWhiteSpace($env:AZP_POOL)) {
+    if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+        $env:AZP_POOL = 'Default'
+    }
+    else {
+        $env:AZP_POOL = ''
+    }
+} 
 
 if ([string]::IsNullOrWhiteSpace($env:AZP_AGENT_NAME)) {
     $env:AZP_AGENT_NAME = $env:COMPUTERNAME
@@ -101,6 +105,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --acceptteeeula 
         }
         else {
+            Write-Host "Configuring deployment pool $DEPLOYMENT_POOL_NAME" -ForegroundColor Cyan
+
             ./config.sh --unattended `
             --deploymentpool `
             --deploymentpoolname $DEPLOYMENT_POOL_NAME `
@@ -134,6 +140,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                     --acceptteeeula
             }
             else {
+                Write-Host "Configuring proxy with deployment pool $DEPLOYMENT_POOL_NAME" -ForegroundColor Cyan
+
                 ./config.sh --unattended `
                 --deploymentpool `
                 --deploymentpoolname $DEPLOYMENT_POOL_NAME `
@@ -142,6 +150,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 --token $PAT `
                 --agent $AGENT `
                 --work $WORK `
+                --proxyurl $PROXY `
                 --replace `
                 --acceptteeeula 
             }
@@ -162,6 +171,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                     --acceptteeeula 
             }
             else {
+                Write-Host "Configuring proxy/userproxy with deployment pool $DEPLOYMENT_POOL_NAME" -ForegroundColor Cyan
+
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
