@@ -27,6 +27,7 @@ Optionals environment variables:
 * `PROXY_USER` - If necessary, inform the username for proxy authentication
 * `PROXY_PASSWORD` - If necessary, inform the password for proxy authentication
 * `AZP_DEPLOYMENT_POOL_NAME` - If informed, a Deployment Pool type agent will be created
+* `AZP_DEPLOYMENT_GROUP_TAGS` - Used with AZP_DEPLOYMENT_POOL_NAME, to specify the comma separated list of tags for the deployment group agent - for example "web, db"
 
 
 ## Running
@@ -85,6 +86,7 @@ export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; spl
 docker run --name devops-$AZ_AGENT_WORK_PATH `
     -d `
     -e AZP_DEPLOYMENT_POOL_NAME=your deploymento pool name `
+    -e AZP_DEPLOYMENT_GROUP_TAGS="web,db" `
     -e AZP_URL=https://dev.azure.com/your_subscription `
     -e AZP_TOKEN=your PAT `
     -e AZP_AGENT_NAME=$AZ_AGENT_NAME `

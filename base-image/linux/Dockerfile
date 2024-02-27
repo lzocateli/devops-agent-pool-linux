@@ -1,5 +1,4 @@
-##FROM mcr.microsoft.com/powershell:ubuntu-20.04
-FROM mcr.microsoft.com/azure-powershell:9.4.0-ubuntu-20.04
+FROM mcr.microsoft.com/azure-powershell:11.3.1-ubuntu-22.04
 
 ## -NoProfile \
     

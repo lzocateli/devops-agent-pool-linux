@@ -59,6 +59,10 @@ $env:AZP_WORK = ""
 $DEPLOYMENT_POOL_NAME = $env:AZP_DEPLOYMENT_POOL_NAME
 $env:AZP_DEPLOYMENT_POOL_NAME = ""
 
+$DEPLOYMENT_GROUP_TAGS = $env:AZP_DEPLOYMENT_GROUP_TAGS
+$env:AZP_DEPLOYMENT_GROUP_TAGS = ""
+
+
 
 $PROXY = $env:HTTP_PROXY 
 $env:HTTPS_PROXY = ""
@@ -81,6 +85,7 @@ if (-not (Test-Path $pathAgentCredential)) {
     Write-Host "work: $WORK " -ForegroundColor Cyan
     Write-Host "proxy: $PROXY " -ForegroundColor Cyan
     Write-Host "deployment pool name: $DEPLOYMENT_POOL_NAME " -ForegroundColor Cyan
+    Write-Host "deployment group tags: $DEPLOYMENT_GROUP_TAGS " -ForegroundColor Cyan
   
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
@@ -88,6 +93,14 @@ if (-not (Test-Path $pathAgentCredential)) {
     ./env.sh
 
     Get-ChildItem env:
+
+
+    if ($false -eq [string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+        if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_GROUP_TAGS)) {
+            Write-Error "Variavel AZP_DEPLOYMENT_GROUP_TAGS precisa ser informada, EX: AZP_DEPLOYMENT_GROUP_TAGS = ""web,prd"""
+        }
+    }
+
 
     if ([string]::IsNullOrWhiteSpace($env:HTTP_PROXY)) {
 
@@ -110,6 +123,8 @@ if (-not (Test-Path $pathAgentCredential)) {
             ./config.sh --unattended `
             --deploymentpool `
             --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+            --deploymentGroupTags
+            --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
             --url $URL `
             --auth PAT `
             --token $PAT `
@@ -145,6 +160,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                 --deploymentpool `
                 --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                --deploymentGroupTags
+                --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
                 --url $URL `
                 --auth PAT `
                 --token $PAT `
@@ -176,6 +193,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                    --deploymentGroupTags
+                    --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
                     --url $URL `
                     --auth PAT `
                     --token $PAT `
