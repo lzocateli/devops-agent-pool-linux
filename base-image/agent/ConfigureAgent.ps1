@@ -123,7 +123,7 @@ if (-not (Test-Path $pathAgentCredential)) {
             ./config.sh --unattended `
             --deploymentpool `
             --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-            --deploymentGroupTags
+            --deploymentGroupTags `
             --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
             --url $URL `
             --auth PAT `
@@ -160,7 +160,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                 --deploymentpool `
                 --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-                --deploymentGroupTags
+                --deploymentGroupTags `
                 --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
                 --url $URL `
                 --auth PAT `
@@ -193,7 +193,7 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-                    --deploymentGroupTags
+                    --deploymentGroupTags `
                     --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
                     --url $URL `
                     --auth PAT `
