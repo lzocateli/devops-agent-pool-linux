@@ -11,7 +11,21 @@
 
 ## Configuration
 
-For `agent`, you need to set these environment variables:
+For `agent`, you need to set these environment variables in `/etc/profile`: 
+
+```bash
+export AZ_AGENT_WORK_PATH=agent-01
+export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
+export AZ_DEPLOYMENT_GROUP_TAGS=qas  # or prd  Pay attention in environment where your machine belongs
+export AZ_DEPLOYMENT_POOL_NAME=LZ-LINUX
+```
+
+```bash
+#Execute
+source /etc/profile
+
+mkdir -p /var/$AZ_AGENT_WORK_PATH
+```
 
 * `AZP_URL` - Required. The Azure DevOps organization
 * `AZP_TOKEN` - Required. The personal access token PAT from Azure DevOps. 
@@ -27,22 +41,22 @@ Optionals environment variables:
 * `PROXY_USER` - If necessary, inform the username for proxy authentication
 * `PROXY_PASSWORD` - If necessary, inform the password for proxy authentication
 * `AZP_DEPLOYMENT_POOL_NAME` - If informed, a Deployment Pool type agent will be created
+* `AZP_DEPLOYMENT_GROUP_TAGS` - Used with AZP_DEPLOYMENT_POOL_NAME, to specify the comma separated list of tags for the deployment group agent - for example "web, db"
 
 
 ## Running
 
 On a Mac, use Docker for Mac, or directy on Linux, run in bash:
 
+To start a container in foreground mode: `docker run -ti --rm`
+
 To start a container in detached mode:
 
-````pwsh
-export AZ_AGENT_WORK_PATH=agent-01
-export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
-
+```powershell
 docker run --name devops-$AZ_AGENT_WORK_PATH `
     -d `
     -e AZP_URL=https://dev.azure.com/your_subscription `
-    -e AZP_TOKEN=your PAT `
+    -e AZP_TOKEN=####your PAT#### `
     -e AZP_POOL=your agent pool name `
     -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
     -e AZP_WORK=/agent/_work `
@@ -50,53 +64,35 @@ docker run --name devops-$AZ_AGENT_WORK_PATH `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
-    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0 
-````
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
+    lzocateli/devops-agent-deploypool-linux:1.0.0
+```
 
-To start a container in foreground mode:
-
-````pwsh
-export AZ_AGENT_WORK_PATH=agent-01
-export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
-
-docker run --name devops-$AZ_AGENT_WORK_PATH `
-    -ti `
-    --rm `
-    -e AZP_URL=https://dev.azure.com/your_subscription `
-    -e AZP_TOKEN=your PAT `
-    -e AZP_POOL=your agent pool name `
-    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
-    -e AZP_WORK=/agent/_work `
-    -e HTTP_PROXY=http://proxy.domain.com:80 `
-    -e NO_PROXY=domain.com `
-    -e PROXY_USER=myuser `
-    -e PROXY_PASSWORD=XYZ `
-    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
-    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
-````
 
 To run a container with a `deployment pool` agent
 
-````pwsh
-export AZ_AGENT_WORK_PATH=agent-01
-export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
-
+```powershell
 docker run --name devops-$AZ_AGENT_WORK_PATH `
     -d `
-    -e AZP_DEPLOYMENT_POOL_NAME=your deploymento pool name `
+    -e AZP_DEPLOYMENT_POOL_NAME=$AZ_DEPLOYMENT_POOL_NAME `
+    -e AZP_DEPLOYMENT_GROUP_TAGS=$AZ_DEPLOYMENT_GROUP_TAGS `
     -e AZP_URL=https://dev.azure.com/your_subscription `
-    -e AZP_TOKEN=your PAT `
+    -e AZP_TOKEN=####your PAT#### `
     -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
     -e AZP_WORK=/agent/_work `
     -e HTTP_PROXY=http://proxy.domain.com:80 `
     -e NO_PROXY=domain.com `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
-    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work ` to podman `-v /var/azagent-01:/agent/_work:z`
-    nuuvers/devops-agent-pool-linux:linux-x64-agent-1.0.0  
-````
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
+    lzocateli/devops-agent-deploypool-linux:1.0.0 
+```
 
+To podman:
+
+```powershell
+-v /var/$AZ_AGENT_WORK_PATH:/agent/_work:z
+```
 
 
 The -v parameter indicates that a volume is being mounted on the container host, 

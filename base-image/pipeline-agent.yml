@@ -1,6 +1,6 @@
 parameters:
 - name: imageName
-  displayName: "Name the image to be created, example: lzocateli/devops-agent-pool-linux-x64"
+  displayName: "Name the image to be created, example: lzocateli/devops-agent-deploypool-linux"
   type: string
   default: ""
 - name: imageVersion
