@@ -18,6 +18,7 @@ export AZ_AGENT_WORK_PATH=agent-01
 export AZ_AGENT_NAME=$(awk -v azhostname="$HOSTNAME" 'BEGIN {str=azhostname; split(str, arr, "."); { print arr[1]}}')
 export AZ_DEPLOYMENT_GROUP_TAGS=qas  # or prd  Pay attention in environment where your machine belongs
 export AZ_DEPLOYMENT_POOL_NAME=LZ-LINUX
+export AZURE_DEVOPS_EXT_PAT=####your devops PAT#### 
 ```
 
 ```bash
@@ -52,45 +53,45 @@ To start a container in foreground mode: `docker run -ti --rm`
 
 To start a container in detached mode:
 
-```powershell
-docker run --name devops-$AZ_AGENT_WORK_PATH `
-    -d `
-    -e AZP_URL=https://dev.azure.com/your_subscription `
-    -e AZP_TOKEN=####your PAT#### `
-    -e AZP_POOL=your agent pool name `
-    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
-    -e AZP_WORK=/agent/_work `
-    -e HTTP_PROXY=http://proxy.domain.com:80 `
-    -e NO_PROXY=domain.com `
-    -e PROXY_USER=myuser `
-    -e PROXY_PASSWORD=XYZ `
-    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
+```bash
+docker run --name devops-$AZ_AGENT_WORK_PATH \
+    -d \
+    -e AZP_URL=https://dev.azure.com/your_subscription \
+    -e AZP_TOKEN=$AZURE_DEVOPS_EXT_PAT \
+    -e AZP_POOL=your agent pool name \
+    -e AZP_AGENT_NAME=$AZ_AGENT_NAME \
+    -e AZP_WORK=/agent/_work \
+    -e HTTP_PROXY=http://proxy.domain.com:80 \
+    -e NO_PROXY=domain.com \
+    -e PROXY_USER=myuser \
+    -e PROXY_PASSWORD=XYZ \
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work \
     lzocateli/devops-agent-pool-linux-x64:1.0.0
 ```
 
 
 To run a container with a `deployment pool` agent
 
-```powershell
-docker run --name devops-$AZ_AGENT_WORK_PATH `
-    -d `
-    -e AZP_DEPLOYMENT_POOL_NAME=$AZ_DEPLOYMENT_POOL_NAME `
-    -e AZP_DEPLOYMENT_GROUP_TAGS=$AZ_DEPLOYMENT_GROUP_TAGS `
-    -e AZP_URL=https://dev.azure.com/your_subscription `
-    -e AZP_TOKEN=####your PAT#### `
-    -e AZP_AGENT_NAME=$AZ_AGENT_NAME `
-    -e AZP_WORK=/agent/_work `
-    -e HTTP_PROXY=http://proxy.domain.com:80 `
-    -e NO_PROXY=domain.com `
-    -e PROXY_USER=myuser `
-    -e PROXY_PASSWORD=XYZ `
-    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
+```bash
+docker run --name devops-$AZ_AGENT_WORK_PATH \
+    -d \
+    -e AZP_DEPLOYMENT_POOL_NAME=$AZ_DEPLOYMENT_POOL_NAME \
+    -e AZP_DEPLOYMENT_GROUP_TAGS=$AZ_DEPLOYMENT_GROUP_TAGS \
+    -e AZP_URL=https://dev.azure.com/your_subscription \
+    -e AZP_TOKEN=$AZURE_DEVOPS_EXT_PAT \
+    -e AZP_AGENT_NAME=$AZ_AGENT_NAME \
+    -e AZP_WORK=/agent/_work \
+    -e HTTP_PROXY=http://proxy.domain.com:80 \
+    -e NO_PROXY=domain.com \
+    -e PROXY_USER=myuser \
+    -e PROXY_PASSWORD=XYZ \
+    -v /var/$AZ_AGENT_WORK_PATH:/agent/_work \
     lzocateli/devops-agent-pool-linux-x64:1.0.0 
 ```
 
 To podman:
 
-```powershell
+```bash
 -v /var/$AZ_AGENT_WORK_PATH:/agent/_work:z
 ```
 
