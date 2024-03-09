@@ -65,7 +65,7 @@ docker run --name devops-$AZ_AGENT_WORK_PATH `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
     -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
-    lzocateli/devops-agent-deploypool-linux:1.0.0
+    lzocateli/devops-agent-pool-linux-x64:1.0.0
 ```
 
 
@@ -85,7 +85,7 @@ docker run --name devops-$AZ_AGENT_WORK_PATH `
     -e PROXY_USER=myuser `
     -e PROXY_PASSWORD=XYZ `
     -v /var/$AZ_AGENT_WORK_PATH:/agent/_work `
-    lzocateli/devops-agent-deploypool-linux:1.0.0 
+    lzocateli/devops-agent-pool-linux-x64:1.0.0 
 ```
 
 To podman:
