@@ -34,7 +34,7 @@ xyz\.com
 
 Nome da Imagem:
 ```
-lzocateli/devops-agent-deploypool-linux
+lzocateli/devops-agent-pool-linux-x64
 ```
 
 Tag version:
