@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/azure-powershell:11.3.1-ubuntu-22.04
 
-## -NoProfile \
-    
 RUN pwsh \
     -NoLogo \
     -Command " \

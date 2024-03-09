@@ -6,12 +6,12 @@ Basta executar Pull Request no repositorio do Github para gerar nova imagem
 
 Nome da Imagem:
 ```
-lzocateli/az-powershell-7.2-ubuntu-20.04
+lzocateli/az-powershell-ubuntu
 ```
 
 Tag version:
 ```
-1.0.0
+11.3.1-ubuntu-22.04
 ```
 
 Local para o dockerfile:
@@ -34,7 +34,7 @@ xyz\.com
 
 Nome da Imagem:
 ```
-lzocateli/devops-agent-pool-linux-x64
+lzocateli/devops-agent-deploypool-linux
 ```
 
 Tag version:

@@ -1,4 +1,4 @@
-FROM lzocateli/az-powershell-11.3.1-ubuntu-22.04:1.0.0
+FROM lzocateli/az-powershell-ubuntu:11.3.1-22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
