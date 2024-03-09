@@ -6,7 +6,7 @@ Basta executar Pull Request no repositorio do Github para gerar nova imagem
 
 Nome da Imagem:
 ```
-lzocateli/az-powershell-ubuntu
+lzocateli/az-powershell-linux
 ```
 
 Tag version:
