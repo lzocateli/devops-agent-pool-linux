@@ -1,10 +1,10 @@
 parameters:
 - name: imageName
-  displayName: "Name the image to be created, example: lzocateli/az-powershell-ubuntu"
+  displayName: "Name the image to be created, example: lzocateli/az-powershell-linux"
   type: string
   default: ""
 - name: imageVersion
-  displayName: "Tag version for the image, example: 11.3.1-22.04"
+  displayName: "Tag version for the image, example: 11.3.1-ubuntu-22.04"
   type: string
   default: ""
 - name: DockerFilePath
