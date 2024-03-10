@@ -48,4 +48,5 @@ COPY ./*.ps1 ./
 COPY . ./
 RUN chmod +x *.ps1 *.sh
 
+RUN pwd && ls -la 
 CMD ["pwsh","./ConfigureOrRun.ps1", "/agent"]
