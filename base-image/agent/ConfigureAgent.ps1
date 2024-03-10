@@ -30,7 +30,13 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_POOL)) {
 } 
 
 if ([string]::IsNullOrWhiteSpace($env:AZP_AGENT_NAME)) {
-    $env:AZP_AGENT_NAME = $env:COMPUTERNAME
+    if ([string]::IsNullOrWhiteSpace($env:COMPUTERNAME)) {
+        $env:AZP_AGENT_NAME = $env:HOSTNAME
+    }
+    else {
+        $env:AZP_AGENT_NAME = $env:COMPUTERNAME
+    }
+
 }
 else {
     $env:AZP_AGENT_NAME = "$($env:AZP_AGENT_NAME)-$($env:HOSTNAME)"
