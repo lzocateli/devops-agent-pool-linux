@@ -126,18 +126,34 @@ if (-not (Test-Path $pathAgentCredential)) {
         else {
             Write-Host "Configuring deployment pool $DEPLOYMENT_POOL_NAME" -ForegroundColor Cyan
 
+            $configCommand = "./config.sh --unattended \`
+            --deploymentpool \`
+            --deploymentpoolname $DEPLOYMENT_POOL_NAME \`
+            --deploymentGroupTags \`
+            --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS \`
+            --url $URL \`
+            --auth PAT \`
+            --token $PAT \`
+            --agent $AGENT \`
+            --work $WORK \`
+            --replace \`
+            --acceptteeeula" 
+
+            Write-Host $configCommand
+
+
             ./config.sh --unattended `
-            --deploymentpool `
-            --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-            --deploymentGroupTags `
-            --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
-            --url $URL `
-            --auth PAT `
-            --token $PAT `
-            --agent $AGENT `
-            --work $WORK `
-            --replace `
-            --acceptteeeula 
+                --deploymentpool `
+                --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                --deploymentGroupTags `
+                --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                --url $URL `
+                --auth PAT `
+                --token $PAT `
+                --agent $AGENT `
+                --work $WORK `
+                --replace `
+                --acceptteeeula 
         }
             
     }
@@ -164,18 +180,18 @@ if (-not (Test-Path $pathAgentCredential)) {
                 Write-Host "Configuring proxy with deployment pool $DEPLOYMENT_POOL_NAME" -ForegroundColor Cyan
 
                 ./config.sh --unattended `
-                --deploymentpool `
-                --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-                --deploymentGroupTags `
-                --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
-                --url $URL `
-                --auth PAT `
-                --token $PAT `
-                --agent $AGENT `
-                --work $WORK `
-                --proxyurl $PROXY `
-                --replace `
-                --acceptteeeula 
+                    --deploymentpool `
+                    --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                    --deploymentGroupTags `
+                    --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                    --url $URL `
+                    --auth PAT `
+                    --token $PAT `
+                    --agent $AGENT `
+                    --work $WORK `
+                    --proxyurl $PROXY `
+                    --replace `
+                    --acceptteeeula 
             }
         }
         else {
