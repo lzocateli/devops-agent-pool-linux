@@ -21,7 +21,7 @@ if ([string]::IsNullOrWhiteSpace($env:AZP_TOKEN)) {
 
 
 if ([string]::IsNullOrWhiteSpace($env:AZP_POOL)) {
-    if ([string]::IsNullOrWhiteSpace($DEPLOYMENT_POOL_NAME)) {
+    if ([string]::IsNullOrWhiteSpace($env:AZP_DEPLOYMENT_POOL_NAME)) {
         $env:AZP_POOL = 'Default'
     }
     else {
