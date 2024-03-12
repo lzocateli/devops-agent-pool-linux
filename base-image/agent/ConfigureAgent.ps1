@@ -182,8 +182,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-                    --deploymentGroupTags `
-                    --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                    --deploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                    --addDeploymentGroupTags `
                     --url $URL `
                     --auth PAT `
                     --token $PAT `
@@ -215,8 +215,8 @@ if (-not (Test-Path $pathAgentCredential)) {
                 ./config.sh --unattended `
                     --deploymentpool `
                     --deploymentpoolname $DEPLOYMENT_POOL_NAME `
-                    --deploymentGroupTags `
-                    --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                    --deploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
+                    --addDeploymentGroupTags `
                     --url $URL `
                     --auth PAT `
                     --token $PAT `
