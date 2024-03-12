@@ -36,6 +36,8 @@ parameters:
 
 trigger: none
 
+pr: none
+
 
 resources:
   pipelines:
