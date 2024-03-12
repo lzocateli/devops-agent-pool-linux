@@ -141,12 +141,12 @@ if (-not (Test-Path $pathAgentCredential)) {
 
             Write-Host $configCommand
 
-            # --deploymentGroupTags `
-            # --addDeploymentGroupTags $DEPLOYMENT_GROUP_TAGS `
-
+            
             ./config.sh --unattended `
                 --deploymentpool `
                 --deploymentpoolname $DEPLOYMENT_POOL_NAME `
+                --deploymentGroupTags `
+                --addDeploymentGroupTags \"$DEPLOYMENT_GROUP_TAGS\" `
                 --url $URL `
                 --auth PAT `
                 --token $PAT `
