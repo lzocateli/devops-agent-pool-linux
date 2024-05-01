@@ -96,6 +96,8 @@ if (-not (Test-Path $pathAgentCredential)) {
 
     Set-Item -Path Env:AGENT_ALLOW_RUNASROOT -Value "1"; 
 
+    gci -force
+
     ./env.sh
 
     Get-ChildItem env:
