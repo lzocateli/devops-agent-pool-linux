@@ -44,6 +44,10 @@ WORKDIR /agent
 
 COPY ./*.ps1 ./
 COPY . ./
-RUN chmod +x *.ps1 *.sh
+RUN chmod +x *.ps1 *.sh \
+    && chown -R $APP_UID:0 /agent \
+    && chmod -R g=u /agent
+
+USER $APP_UID
 
 CMD ["pwsh","./ConfigureOrRun.ps1", "/agent"]
