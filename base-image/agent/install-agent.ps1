@@ -15,6 +15,11 @@ param(
 
 Write-Host "Starting: $($MyInvocation.MyCommand.Definition)"
 
+if ([string]::IsNullOrWhiteSpace($patYourDevOps) -or $patYourDevOps -like "*xxx*") {
+  Write-Host "##[error]Parameter 'patYourDevOps' is empty or contains a placeholder value. Please provide a valid Azure DevOps PAT."
+  Exit 1
+}
+
 if (-not (Test-Path $pathAgent)) {
   New-Item $pathAgent -ItemType directory | Out-Null
 }
@@ -23,7 +28,10 @@ Set-Location $pathAgent
 
 
 if (-not (Test-Path $pathAgent/bin/Agent.Listener.dll)) {
-       
+
+  # Remove trailing slash to avoid double slash in URL
+  $urlYourDevOps = $urlYourDevOps.TrimEnd('/')
+
   $Method = "GET"
   $ApiUrl = "$urlYourDevOps/_apis/distributedtask/packages/agent?platform=$targetArchPlataform&top=1"
 

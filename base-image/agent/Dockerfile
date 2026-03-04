@@ -12,7 +12,7 @@ RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes \
         git \
         iputils-ping \
         libcurl4t64 \
-        libunwind8t64 \
+        libunwind8 \
         netcat-openbsd \
         zip \
         unzip \
