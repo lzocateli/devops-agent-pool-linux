@@ -11,7 +11,7 @@ lzocateli/az-powershell-linux
 
 Tag version:
 ```
-11.3.1-ubuntu-22.04
+15.4.0-ubuntu-24.04
 ```
 
 Local para o dockerfile:
@@ -39,7 +39,7 @@ lzocateli/devops-agent-pool-linux-x64
 
 Tag version:
 ```
-1.0.0
+3.0.0
 ```
 
 Local para o dockerfile:

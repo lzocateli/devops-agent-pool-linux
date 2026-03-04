@@ -1,28 +1,26 @@
-FROM lzocateli/az-powershell-linux:11.3.1-ubuntu-22.04
+FROM lzocateli/az-powershell-linux:15.4.0-ubuntu-24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
-RUN apt update -y \
+RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes \
+    && apt update -y \
     && apt upgrade -y \
     && apt install --no-install-recommends \
-    ca-certificates \
-    curl \
-    jq \
-    git \
-    iputils-ping \
-    libcurl4 \
-    libunwind8 \
-    netcat \
-    zip \
-    unzip \
-    apt-utils \
-    inetutils-traceroute \
-    gnupg \
-    lsb-release \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
+        ca-certificates \
+        curl \
+        jq \
+        git \
+        iputils-ping \
+        libcurl4t64 \
+        libunwind8t64 \
+        netcat-openbsd \
+        zip \
+        unzip \
+        apt-utils \
+        inetutils-traceroute \
+        gnupg \
+        lsb-release \
+    && curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
     && rm -rf /var/lib/apt/lists/*
 
 ARG Env_HttpProxy
